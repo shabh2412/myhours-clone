@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Footer from "../Components/ForFooter/Footer";
 import Navbar from "../Components/ForNavbar/Navbar";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 import ForHowItWorks from "../Pages/day1/ForHowItWorks/ForHowItWorks";
 import ForLandingPage from "../Pages/day1/ForLandingPage/ForLandingPage";
 import FirebasePhone from "../Pages/day1/ForRegistration/ForAuth/FirebasePhone";
@@ -14,6 +15,7 @@ const Allroutes = () => {
 	return (
 		<Box>
 			<Routes>
+				<Route path="/dashboard" element={<Dashboard />} />
 				<Route path="/login" element={<LoginPage />}></Route>
 				<Route path="/register" element={<Register />}></Route>
 				<Route
