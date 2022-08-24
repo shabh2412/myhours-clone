@@ -1,0 +1,18 @@
+.iconBox .menuIcon {
+    display: none;
+}
+
+@media only screen and (max-width : 1068px){
+    .iconBox .menuIcon {
+        display: inline-block;
+    }
+
+    .navbar .menu {
+        display: none;
+    }
+
+    .navbar div {
+        justify-content: "none";
+        gap:20px;
+    }
+}
