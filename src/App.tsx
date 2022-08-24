@@ -1,11 +1,12 @@
 import { Container, Heading } from "@chakra-ui/react";
+import Allroutes from "./AllRoutes/Allroutes";
 import UseCase from "./Pages/day1/ForUseCase/UseCasePage";
 
 function App() {
 	return (
 		<div className="App">
 			<Container>
-				<Heading>myHours</Heading>
+				<Allroutes />
 			</Container>
 		</div>
 	);
