@@ -1,0 +1,15 @@
+.title > span {
+	font-weight: 500;
+}
+
+.description {
+	color: #375d75;
+	font-size: 28px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin-bottom: 60px !important;
+}
+
+.description > span {
+  font-weight: 700;
+}
