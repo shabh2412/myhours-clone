@@ -1,13 +1,15 @@
 import { Container, Heading } from "@chakra-ui/react";
 import Allroutes from "./AllRoutes/Allroutes";
+import Footer from "./Components/ForFooter/Footer";
+import Navbar from "./Components/ForNavbar/Navbar";
 import UseCase from "./Pages/day1/ForUseCase/UseCasePage";
 
 function App() {
 	return (
 		<div className="App">
-			<Container>
-				<Allroutes />
-			</Container>
+			<Navbar />
+			<Allroutes />
+			<Footer />
 		</div>
 	);
 }

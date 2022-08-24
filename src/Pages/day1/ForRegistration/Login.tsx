@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Image, Input } from '@chakra-ui/react'
+import { Box, Button, Container, Heading, Image, Input } from '@chakra-ui/react'
 import {
   FormControl,
   FormLabel,
@@ -11,7 +11,7 @@ const LoginPage = () => {
   const { handleInput, handleAdd, state } = useLogin()
 
   return (
-    <Box>
+    <Container>
         <FormControl borderRadius={'10px'} margin="auto" marginTop={'40px'} boxShadow="xl" p="20px" >
 		  <Box display={'flex'} justifyContent='center' alignItems={'center'} >
 			<Image h='40px' w='200px' src='https://allhoursproductb0b1.blob.core.windows.net/static-files/myhours_logo_icon.svg' />
@@ -34,7 +34,7 @@ const LoginPage = () => {
 			<NavLink to="/register" >New to My Hours? Sign Up</NavLink>
 		  </Box>
         </FormControl>
-    </Box>
+    </Container>
   )
 }
 
