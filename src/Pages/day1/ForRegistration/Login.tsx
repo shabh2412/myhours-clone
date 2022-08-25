@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 import useLogin from "../../../customHooks/useLogin";
 
 const LoginPage = () => {
-	const { handleInput, handleAdd, state } = useLogin();
+	const { handleInput, handleAdd, stat } = useLogin();
 
 	return (
 		<Container>
@@ -69,7 +69,7 @@ const LoginPage = () => {
 					alignItems={"center"}
 					marginTop={"15px"}>
 					<Button
-						isLoading={state.isLoading}
+						isLoading={stat.isLoading}
 						onClick={handleAdd}
 						bgColor="#80b7d8"
 						color={"white"}>

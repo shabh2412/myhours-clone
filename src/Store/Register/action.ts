@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "react";
-import { loadDataLocalStorage } from "../../Utils/localData";
-import { RegisterCheckUsername, RegisterCompanyCountry, RegisterCompanyName, RegisterDispatchHandler, RegisterFailure, RegisterInputEmail, RegisterInputEmailCheck, RegisterInputPassword, RegisterInputUsername, RegisterLoader, RegisterOtpVerification, RegisterSetToken, REGISTER_COMPANY_COMPANYNAME, REGISTER_COMPANY_COUNTRY, REGISTER_EMAIL_CHECK, REGISTER_FAILURE, REGISTER_INPUT_EMAIL, REGISTER_INPUT_PASSWORD, REGISTER_INPUT_USERNAME, REGISTER_OTP_VERIFY, REGISTER_PREGET, REGISTER_SETTOKEN, REGISTER_USERNAME_CHECK, User, RegisterCompanyMobile, REGISTER_COMPANY_MOBILE, RegisterCompanyGetCountryForSelect, countries, REGISTER_COMPANY_GET_COUNTRY_FOR_SELECT, REGISTER_JUST_CHANGE_STATUS, RegisterJustChangingStatus, RegisterSetCompanyId, REGISTER_SET_COMPANY_ID, RegisterIsAuthenticated, REGISTER_IS_AUTHENTICATED } from "./actionType";
+import { loadDataLocalStorage, saveDataLocalStorage } from "../../Utils/localData";
+import { RegisterCheckUsername, RegisterCompanyCountry, RegisterCompanyName, RegisterDispatchHandler, RegisterFailure, RegisterInputEmail, RegisterInputEmailCheck, RegisterInputPassword, RegisterInputUsername, RegisterLoader, RegisterOtpVerification, RegisterSetToken, REGISTER_COMPANY_COMPANYNAME, REGISTER_COMPANY_COUNTRY, REGISTER_EMAIL_CHECK, REGISTER_FAILURE, REGISTER_INPUT_EMAIL, REGISTER_INPUT_PASSWORD, REGISTER_INPUT_USERNAME, REGISTER_OTP_VERIFY, REGISTER_PREGET, REGISTER_SETTOKEN, REGISTER_USERNAME_CHECK, User, RegisterCompanyMobile, REGISTER_COMPANY_MOBILE, RegisterCompanyGetCountryForSelect, countries, REGISTER_COMPANY_GET_COUNTRY_FOR_SELECT, REGISTER_JUST_CHANGE_STATUS, RegisterJustChangingStatus, RegisterSetCompanyId, REGISTER_SET_COMPANY_ID, RegisterIsAuthenticated, REGISTER_IS_AUTHENTICATED, ResetPasswordsetUserId, RESET_PASSWORD_SET_USER_ID, ResetPasswordEmailToggle, RESET_PASSWORD_EMAIL_TOGGLE } from "./actionType";
 import { UserCompany } from "./reducer";
 
 export const postUserAndGetToken = ( obj : User ) : any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
@@ -46,13 +46,17 @@ export const queryCheckEmail = ( q :string ) : any => async( dispatch : Dispatch
 
     try{
         let data = await axios.get(`https://my-hours.herokuapp.com/users?email=${q}`)
+        
+
         if(data.data.length>0)
         {
             dispatch(checkEmail(false))
+            dispatch(ResetPasswordsetUserIdAction(data.data[0]._id))
         }
         else
         {
             dispatch(checkEmail(true))
+            dispatch(ResetPasswordEmailToggleAction(false))
         }
     }
     catch(e){
@@ -148,7 +152,8 @@ export const setValueOfAuthentication = ( newStatus: boolean ): any => async( di
 //                 email : e
 //         })
 
-//         dispatch(ForRegisterSetEmail(data.data.email))
+//         saveDataLocalStorage("emailKey", data.data.email)
+//         // dispatch(ForRegisterSetEmail(data.data.email))
 
 //     }
 //     catch(e){
@@ -314,3 +319,21 @@ export const RegisterIsAuthenticatedAction = ( value : boolean ): RegisterIsAuth
     }
 
 }
+
+export const ResetPasswordsetUserIdAction = ( value : string ): ResetPasswordsetUserId => {
+
+    return {
+        type : RESET_PASSWORD_SET_USER_ID,
+        payload : value
+    }
+
+}
+
+export const ResetPasswordEmailToggleAction = ( value: boolean ) : ResetPasswordEmailToggle => {
+
+    return {
+        type : RESET_PASSWORD_EMAIL_TOGGLE,
+        payload : value
+    }
+
+} 

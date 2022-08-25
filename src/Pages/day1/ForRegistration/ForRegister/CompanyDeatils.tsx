@@ -28,7 +28,7 @@ const CompanyDeatils = ( { handlePageChange,pageChange } : Props ) => {
           <Select onChange={(e)=>handleCompany(e.target.value,e.target.name)} placeholder='Select' size='sm' defaultValue={'India'} name="companyCountry" marginBottom={'28px'} >
             {
                 state.countrySelect?.map((el,i)=>(
-                    <option key={i} value={el.country} >{ el.country }</option>
+                  <option key={i} value={el.country} >{ el.country }</option>
                 ))
             }
           </Select>

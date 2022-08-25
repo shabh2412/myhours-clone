@@ -1,5 +1,5 @@
 import { loadDataLocalStorage, saveDataLocalStorage, removeDataLocalStorage } from './../../Utils/localData';
-import { LoginDispatchHandler, LOGIN_PREGET, LOGIN_SET_EMAIL, LOGIN_SET_PASSWORD, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_CHANGE_AUTH } from './actionType';
+import { LoginDispatchHandler, LOGIN_PREGET, LOGIN_SET_EMAIL, LOGIN_SET_PASSWORD, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_CHANGE_AUTH, LOGGED_IN_RESET_PASSWORD, LOGGED_IN_RESETTED_CONFIRM_PASSWORD, LOGGED_IN_IS_PASSWORD_MATCHING, LOGGED_IN_PASSWORD_CHANGED } from './actionType';
 
 export interface Userr {
     email : string,
@@ -11,7 +11,11 @@ export interface LoginInit {
     isLoading : boolean,
     isError? : boolean,
     userId : string,
-    userobjLogin : Userr
+    userobjLogin : Userr,
+    resetPassword : string,
+    resetConfirmPassword : string,
+    isPasswordMatches? : boolean,
+    passwordChanged? : boolean
 }
 
 const LogInInititalState: LoginInit = {
@@ -23,7 +27,11 @@ const LogInInititalState: LoginInit = {
     userobjLogin : {
         email : "",
         password : ""
-    }
+    },
+    resetPassword : "",
+    resetConfirmPassword : "",
+    isPasswordMatches : false,
+    passwordChanged : false
 
 } 
 
@@ -77,6 +85,32 @@ export const loginReducer = ( state = LogInInititalState, { type , payload } : L
             return {
                 ...state,
                 isAuthed : payload
+            }
+        }
+        case LOGGED_IN_RESET_PASSWORD : {
+
+            return {
+                ...state,
+                resetPassword : payload
+            }
+        }
+        case LOGGED_IN_RESETTED_CONFIRM_PASSWORD : {
+            return {
+                ...state,
+                resetConfirmPassword : payload
+            }
+        }
+        case LOGGED_IN_IS_PASSWORD_MATCHING : {
+            return {
+                ...state,
+                isPasswordMatches : payload
+            }
+        }
+        case LOGGED_IN_PASSWORD_CHANGED : {
+            return {
+                ...state,
+                passwordChanged : payload,
+                isLoading : false
             }
         }
         default : return state
