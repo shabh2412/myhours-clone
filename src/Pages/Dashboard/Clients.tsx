@@ -34,11 +34,13 @@ const Clients = (props: Props) => {
 			{data.length > 0 ? (
 				<DataTable tableData={data} deleteHandler={deleteClient} />
 			) : (
-				<HStack h="80vh" w="100" justifyContent="center" alignItems="center">
-					<Box>
-						<Text>Sorry No Data Exists...</Text>
-					</Box>
-				</HStack>
+				!get.loading && (
+					<HStack h="80vh" w="100" justifyContent="center" alignItems="center">
+						<Box>
+							<Text>Sorry No Data Exists...</Text>
+						</Box>
+					</HStack>
+				)
 			)}
 		</>
 	);
