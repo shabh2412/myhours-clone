@@ -12,6 +12,7 @@ import Projects from "../Pages/Dashboard/Projects";
 import Reports from "../Pages/Dashboard/Reports";
 import { SideBarLayout } from "../Pages/Dashboard/SideBarLayout";
 import Tasks from "../Pages/Dashboard/Tasks";
+import TeamFormPage from "../Pages/Dashboard/TeamFormPage";
 import TeamMembers from "../Pages/Dashboard/TeamMembers";
 import ForHowItWorks from "../Pages/day1/ForHowItWorks/ForHowItWorks";
 import ForLandingPage from "../Pages/day1/ForLandingPage/ForLandingPage";
@@ -73,10 +74,7 @@ const Allroutes = () => {
 					<Route
 						path="team-members/new"
 						element={
-							<h1>
-								Add team member form
-								{/* Update once the form is ready. */}
-							</h1>
+							<TeamFormPage />
 						}
 					/>
 					<Route path="clients" element={<Clients />} />
