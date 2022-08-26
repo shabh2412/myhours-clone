@@ -1,18 +1,19 @@
 import axios, { Axios, AxiosResponse } from "axios"
 import { Dispatch } from "redux";
 import { initialTeamState } from "../../Pages/Dashboard/TeamFormPage"
-import { ADD_TEAM_MEMBER, DELETE_TEAM_MEMBER, GET_TEAM_MEMBERS } from "./action.types";
+import { ADD_TEAM_MEMBER, DELETE_TEAM_MEMBER, DispatchHandler, GET_TEAM_MEMBERS } from "./action.types";
 
 export type action = {
     type : string,
-    payload : initialTeamState[] | number | string;
+    payload : initialTeamState[];
 }
 
 const url = "https://my-hours.herokuapp.com/teamMember";
 
-export const get_members = ():any => async (dispatch:Dispatch<action>):Promise<void> => {
+export const get_members = ():any => async (dispatch:Dispatch<DispatchHandler>):Promise<void> => {
     try {
         const res = await axios.get(url);
+        console.log(res.data);
         dispatch({
             type : GET_TEAM_MEMBERS,
             payload : res.data
