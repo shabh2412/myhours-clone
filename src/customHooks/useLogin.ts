@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { checkUserExistsOrNotonLogIN, LogInError, setEmail, setPassword, logInAuthChange } from './../Store/Login/action';
+import { checkUserExistsOrNotonLogIN, LogInError, setEmail, setPassword, logInAuthChange, LoginResetPasswordAction, LoginResetConfirmPasswordAction, isPasswordMatching, resetThePasswordInBackend, passwordChanged } from './../Store/Login/action';
 import { useEffect } from 'react';
 import { useToast } from '@chakra-ui/react';
 import { RootReducer } from '../Store/store';
@@ -9,12 +9,16 @@ import { LoginInit } from '../Store/Login/reducer';
 interface ReturnLogin {
   handleInput : ( name : string, value : string ) => void,
   handleAdd : () => void,
-  state : LoginInit
+  stat : LoginInit,
+  handleNewPassword : ( e : string ) => void,
+  handleConfirmNewPassword : ( e: string ) => void,
+  handleChangingPassword : () => void
 }
 
 const useLogin = () : ReturnLogin => {
 
-    const state = useSelector((state : RootReducer) => state.loginR)
+    const stat = useSelector((state : RootReducer) => state.loginR)
+    const state = useSelector((state : RootReducer) => state.register)
     const dispatch = useDispatch()
     const toast = useToast()
     let navigate = useNavigate()
@@ -31,15 +35,37 @@ const useLogin = () : ReturnLogin => {
       }
   
     }
+    let handleNewPassword = ( e: string ) : void => {
+      dispatch(LoginResetPasswordAction(e))
+    } 
+ 
+    let handleConfirmNewPassword = ( e: string ) : void => {
+      dispatch(LoginResetConfirmPasswordAction(e))
+
+      if(e===stat.resetPassword)
+      {
+        dispatch(isPasswordMatching(true))
+      }
+      else{
+        dispatch(isPasswordMatching(false))
+      }
+      
+    }
   
     let handleAdd = (): void => {
   
-      dispatch(checkUserExistsOrNotonLogIN(state.userobjLogin))
+      dispatch(checkUserExistsOrNotonLogIN(stat.userobjLogin))
   
+    }
+
+    let handleChangingPassword = (): void => {
+      
+      dispatch(resetThePasswordInBackend(state.setUserIdForResetPassword,stat.resetConfirmPassword))
+
     }
   
     useEffect(()=>{
-      if(state.isError)
+      if(stat.isError)
       {
         toast({
           title: 'User Do not Exists!',
@@ -51,10 +77,10 @@ const useLogin = () : ReturnLogin => {
         })
         dispatch(LogInError(false))
       }
-    },[state.isError])
+    },[stat.isError])
   
     useEffect(()=>{
-      if(state.isAuthed)
+      if(stat.isAuthed)
       {
         toast({
           title: 'Verification Successfull',
@@ -67,9 +93,27 @@ const useLogin = () : ReturnLogin => {
         // navigate("/")
         dispatch(logInAuthChange(false))
       }
-    },[state.isAuthed])
+    },[stat.isAuthed])
 
-    return { handleInput, handleAdd, state }
+    useEffect(()=>{
+
+      if(stat.passwordChanged)
+      {
+        toast({
+          title: 'Success',
+          description: "Your password was changed successfully.",
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+          position : "top"
+        })
+        navigate('/login')
+        dispatch(passwordChanged(false))
+      }
+
+    },[stat.passwordChanged])
+
+    return { handleInput, handleAdd, stat, handleNewPassword, handleConfirmNewPassword, handleChangingPassword }
 
 }
 

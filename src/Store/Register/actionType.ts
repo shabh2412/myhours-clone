@@ -14,6 +14,8 @@ export const REGISTER_COMPANY_GET_COUNTRY_FOR_SELECT = "REGISTER_COMPANY_GET_COU
 export const REGISTER_JUST_CHANGE_STATUS = "REGISTER_JUST_CHANGE_STATUS"
 export const REGISTER_SET_COMPANY_ID = "REGISTER_SET_COMPANY_ID"
 export const REGISTER_IS_AUTHENTICATED = "REGISTER_IS_AUTHENTICATED"
+export const RESET_PASSWORD_SET_USER_ID = "RESET_PASSWORD_SET_USER_ID"
+export const RESET_PASSWORD_EMAIL_TOGGLE = "RESET_PASSWORD_EMAIL_TOGGLE"
 
 
 export interface countries {
@@ -106,4 +108,14 @@ export interface RegisterIsAuthenticated {
     payload : boolean
 } 
 
-export type RegisterDispatchHandler = RegisterIsAuthenticated | RegisterSetCompanyId | RegisterJustChangingStatus | RegisterCompanyGetCountryForSelect | RegisterCompanyMobile | RegisterCompanyCountry | RegisterCompanyName | RegisterInputEmailCheck | RegisterOtpVerification | RegisterCheckUsername | RegisterSetToken | RegisterLoader | RegisterFailure | RegisterInputUsername | RegisterInputPassword | RegisterInputEmail
+export interface ResetPasswordsetUserId {
+    type : typeof RESET_PASSWORD_SET_USER_ID,
+    payload : string
+}
+
+export interface ResetPasswordEmailToggle {
+    type : typeof RESET_PASSWORD_EMAIL_TOGGLE,
+    payload : boolean
+}
+
+export type RegisterDispatchHandler = ResetPasswordEmailToggle | ResetPasswordsetUserId | RegisterIsAuthenticated | RegisterSetCompanyId | RegisterJustChangingStatus | RegisterCompanyGetCountryForSelect | RegisterCompanyMobile | RegisterCompanyCountry | RegisterCompanyName | RegisterInputEmailCheck | RegisterOtpVerification | RegisterCheckUsername | RegisterSetToken | RegisterLoader | RegisterFailure | RegisterInputUsername | RegisterInputPassword | RegisterInputEmail

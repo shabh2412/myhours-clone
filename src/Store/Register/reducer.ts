@@ -1,4 +1,4 @@
-import { RegisterDispatchHandler, User, REGISTER_INPUT_USERNAME, REGISTER_INPUT_EMAIL, REGISTER_INPUT_PASSWORD, REGISTER_PREGET, REGISTER_SETTOKEN, REGISTER_FAILURE, REGISTER_USERNAME_CHECK, REGISTER_OTP_VERIFY, REGISTER_EMAIL_CHECK, REGISTER_COMPANY_COMPANYNAME, REGISTER_COMPANY_COUNTRY,  REGISTER_COMPANY_MOBILE, countries, REGISTER_COMPANY_GET_COUNTRY_FOR_SELECT, REGISTER_JUST_CHANGE_STATUS, REGISTER_SET_COMPANY_ID, REGISTER_IS_AUTHENTICATED } from './actionType';
+import { RegisterDispatchHandler, User, REGISTER_INPUT_USERNAME, REGISTER_INPUT_EMAIL, REGISTER_INPUT_PASSWORD, REGISTER_PREGET, REGISTER_SETTOKEN, REGISTER_FAILURE, REGISTER_USERNAME_CHECK, REGISTER_OTP_VERIFY, REGISTER_EMAIL_CHECK, REGISTER_COMPANY_COMPANYNAME, REGISTER_COMPANY_COUNTRY,  REGISTER_COMPANY_MOBILE, countries, REGISTER_COMPANY_GET_COUNTRY_FOR_SELECT, REGISTER_JUST_CHANGE_STATUS, REGISTER_SET_COMPANY_ID, REGISTER_IS_AUTHENTICATED, RESET_PASSWORD_SET_USER_ID, RESET_PASSWORD_EMAIL_TOGGLE } from './actionType';
 import { loadDataLocalStorage, saveDataLocalStorage } from "../../Utils/localData"
 
 export interface UserCompany {
@@ -25,7 +25,9 @@ export interface Init {
     UserCompanyArr : userCompanyBlock[],
     countrySelect? : countries[],
     companyId : string,
-    isAuthenticated? : boolean
+    isAuthenticated? : boolean,
+    setUserIdForResetPassword? : string,
+    setUSerIdEmailToggle? : boolean 
 }
 
 const initialState: Init = {
@@ -49,7 +51,9 @@ const initialState: Init = {
     UserCompanyArr : [{ value : "1-5", status : false}, { value : "6-20", status : false}, { value : "21-100", status : false}, { value : "101-300", status : false},{ value :  "300+", status : false}],
     countrySelect : [],
     companyId : loadDataLocalStorage('companyMd5hash') || "",
-    isAuthenticated : false
+    isAuthenticated : false,
+    setUserIdForResetPassword : "",
+    setUSerIdEmailToggle : false
 }
 
 export const registerReducer = ( state = initialState, { type, payload } : RegisterDispatchHandler ): any => {
@@ -203,6 +207,18 @@ export const registerReducer = ( state = initialState, { type, payload } : Regis
                 ...state,
                 isAuthenticated : payload,
                 isLoading : false
+            }
+         }
+         case RESET_PASSWORD_SET_USER_ID : {
+            return {
+                ...state,
+                setUserIdForResetPassword : payload
+            }
+         }
+         case RESET_PASSWORD_EMAIL_TOGGLE : {
+            return {
+                ...state,
+                setUSerIdEmailToggle : payload
             }
          }
          default : return state 
