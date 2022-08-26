@@ -58,8 +58,12 @@ export const SidebarContent = ({
 				fontSize="sm"
 				color="gray.600"
 				aria-label="Main Navigation">
-				<NavItem icon={MdHome}>Tasks</NavItem>
-				<NavItem icon={BsBriefcase}>Projects</NavItem>
+				<NavItem icon={MdHome}>
+					<NavLink to="tasks">Tasks</NavLink>
+				</NavItem>
+				<NavItem icon={BsBriefcase}>
+					<NavLink to="projects">Projects</NavLink>
+				</NavItem>
 				<NavItem
 					icon={GoGraph}
 					onClick={() => {
@@ -67,7 +71,7 @@ export const SidebarContent = ({
 						if (clients.isOpen) clients.onToggle();
 						if (teams.isOpen) teams.onToggle();
 					}}>
-					Reports
+					<NavLink to="reports">Reports</NavLink>
 					<Icon
 						as={HiChevronRight}
 						ml="auto"
@@ -99,7 +103,7 @@ export const SidebarContent = ({
 						if (reports.isOpen) reports.onToggle();
 						if (teams.isOpen) teams.onToggle();
 					}}>
-					Clients
+					<NavLink to="clients">Clients</NavLink>
 					<Icon
 						as={HiChevronRight}
 						ml="auto"
@@ -109,7 +113,7 @@ export const SidebarContent = ({
 				<Collapse in={clients.isOpen}>
 					<Box bg="rgba(45, 182, 126, 0.15)">
 						<NavItem pl="12" py="2">
-							<Link as={NavLink} to="clientsX">
+							<Link as={NavLink} to="clients">
 								Clients
 							</Link>
 						</NavItem>
@@ -129,7 +133,7 @@ export const SidebarContent = ({
 						if (clients.isOpen) clients.onToggle();
 						if (reports.isOpen) reports.onToggle();
 					}}>
-					Teams
+					<NavLink to="team-members">Teams</NavLink>
 					<Icon
 						as={HiChevronRight}
 						ml="auto"
@@ -139,7 +143,7 @@ export const SidebarContent = ({
 				<Collapse in={teams.isOpen}>
 					<Box bg="rgba(45, 182, 126, 0.15)">
 						<NavItem pl="12" py="2">
-							<Link as={NavLink} to="teamsX">
+							<Link as={NavLink} to="team-members">
 								Team Members
 							</Link>
 						</NavItem>
