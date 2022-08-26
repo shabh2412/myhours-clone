@@ -13,12 +13,17 @@ const Clients = (props: Props) => {
 	useEffect(() => {
 		dispatch(getClients());
 	}, []);
-	useEffect(()=>{
+	useEffect(() => {
 		console.log(data);
-	},[])
+	}, []);
 	return (
 		<>
-			<SectionHeader title="Clients" buttonText="New Client" formLink="new" />
+			<SectionHeader
+				searchQ={getClients}
+				title="Clients"
+				buttonText="New Client"
+				formLink="new"
+			/>
 			{/* Add table component after merging. */}
 			{data.length > 0 && <DataTable tableData={data} />}
 		</>

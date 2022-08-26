@@ -35,10 +35,11 @@ const clientsGetError = (value: boolean): ClientsGetError => ({
 });
 
 export const getClients =
-	(): any => (dispatch: Dispatch<ClientDispatchHandler>) => {
+	(name?: string): any =>
+	(dispatch: Dispatch<ClientDispatchHandler>) => {
 		dispatch(clientsGetLoading(true));
 		axios
-			.get(url)
+			.get(`${url}/?q=${name || ""}`)
 			.then((res) => {
 				dispatch(clientsGetSuccess(res.data));
 			})
@@ -74,5 +75,18 @@ export const postClient =
 			})
 			.catch(() => {
 				dispatch(clientPostError(true));
+			});
+	};
+
+export const deleteClient =
+	(clientId: string): any =>
+	(dispatch: Dispatch<ClientDispatchHandler>) => {
+		axios
+			.delete(`${url}/${clientId}`)
+			.then(() => {
+				dispatch(getClients());
+			})
+			.catch((e) => {
+				console.log(e.message);
 			});
 	};
