@@ -5,11 +5,12 @@ import { action } from "./actions";
 
 const startingState:initialTeamState[] = [];
 
-export const teamReducer = (state:initialTeamState[]= startingState,{type,payload}:action) => {
+export const teamReducer = (state = startingState,{type,payload}:action) => {
     switch(type){
         case GET_TEAM_MEMBERS : {
-            console.log(payload);
-           return state;
+           return [
+           ...payload
+           ]
         } case ADD_TEAM_MEMBER : {
             return state;
         } case DELETE_TEAM_MEMBER : {
