@@ -6,11 +6,8 @@ type Props = {};
 const Clients = (props: Props) => {
 	return (
 		<>
-			<SectionHeader
-				title="Clients"
-				buttonText="New Client"
-				formLink="/newClient"
-			/>
+			<SectionHeader title="Clients" buttonText="New Client" formLink="new" />
+			{/* Add table component after merging. */}
 		</>
 	);
 };

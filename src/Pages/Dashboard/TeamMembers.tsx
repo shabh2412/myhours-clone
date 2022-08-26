@@ -9,8 +9,10 @@ const TeamMembers = (props: Props) => {
 			<SectionHeader
 				title="Team Members"
 				buttonText="New Team Member"
-				formLink="/newUser"
+				formLink="new"
 			/>
+			{/* add table component below. */}
+			{/* use your team member store to manage team members data */}
 		</>
 	);
 };
