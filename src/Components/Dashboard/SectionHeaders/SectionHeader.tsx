@@ -9,17 +9,43 @@ import {
 	Text,
 	Link,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link as ChLink } from "react-router-dom";
+import { getClients } from "../../../Store/Clients/action";
 import style from "./SectionHeader.module.css";
 
 type Props = {
 	title: string;
 	formLink: string;
 	buttonText: string;
+	searchQ: (name: string) => any;
 };
 
-const SectionHeader = ({ title, formLink, buttonText }: Props) => {
+const SectionHeader = ({ title, formLink, buttonText, searchQ }: Props) => {
+	const [name, setName] = useState<string>("");
+	const handleChange = (str: string) => {
+		setName(str);
+	};
+	const dispatch = useDispatch();
+	const searchRef = useRef<NodeJS.Timeout | null>(null);
+	const search = () => {
+		if (!searchRef.current) {
+			searchRef.current = setTimeout(() => {
+				dispatch(searchQ(name));
+				searchRef.current = null;
+			}, 1000);
+		} else {
+			clearTimeout(searchRef.current);
+			searchRef.current = setTimeout(() => {
+				dispatch(searchQ(name));
+				searchRef.current = null;
+			}, 1000);
+		}
+	};
+	useEffect(() => {
+		search();
+	}, [name]);
 	return (
 		<HStack justifyContent="space-between" py="4" px="5">
 			<Stack gap="10px">
@@ -28,7 +54,12 @@ const SectionHeader = ({ title, formLink, buttonText }: Props) => {
 					<QuestionOutlineIcon />
 				</Flex>
 				<Flex justifyContent="center" gap="20px">
-					<Input placeholder={`Search ${title}`} />
+					<Input
+						placeholder={`Search ${title}`}
+						onChange={(e) => {
+							handleChange(e.currentTarget.value);
+						}}
+					/>
 					<Button
 						color="#375d75"
 						borderColor="#375d75"
