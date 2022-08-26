@@ -7,17 +7,22 @@ import {
 	CLIENT_POST_LOADING,
 	CLIENT_POST_SUCCESS,
 	ClientType,
+	CLIENTS_DELETE_ERROR,
+	CLIENTS_DELETE_LOADING,
+	CLIENTS_DELETE_SUCCESS,
 } from "./types";
 
-type loadingError = {
+type loadingSuccessOrError = {
 	loading: boolean;
 	error: boolean;
+	success: boolean;
 };
 
 type ClientDataStore = {
 	data: ClientType[];
-	get: loadingError;
-	post: loadingError;
+	get: loadingSuccessOrError;
+	post: loadingSuccessOrError;
+	_delete: loadingSuccessOrError;
 };
 
 const initState: ClientDataStore = {
@@ -25,10 +30,17 @@ const initState: ClientDataStore = {
 	get: {
 		loading: false,
 		error: false,
+		success: false,
 	},
 	post: {
 		loading: false,
 		error: false,
+		success: false,
+	},
+	_delete: {
+		loading: false,
+		error: false,
+		success: false,
 	},
 };
 
@@ -43,6 +55,11 @@ export const clientReducer = (
 				get: {
 					...state.get,
 					loading: payload,
+					error: false,
+				},
+				post: {
+					success: false,
+					loading: false,
 					error: false,
 				},
 			};
@@ -95,6 +112,38 @@ export const clientReducer = (
 					...state.post,
 					loading: false,
 					error: false,
+					success: true,
+				},
+			};
+		}
+		case CLIENTS_DELETE_ERROR: {
+			return {
+				...state,
+				_delete: {
+					...state.post,
+					loading: false,
+					error: true,
+				},
+			};
+		}
+		case CLIENTS_DELETE_LOADING: {
+			return {
+				...state,
+				_delete: {
+					...state.post,
+					loading: true,
+					error: false,
+				},
+			};
+		}
+		case CLIENTS_DELETE_SUCCESS: {
+			return {
+				...state,
+				_delete: {
+					...state.post,
+					loading: false,
+					error: false,
+					success: true,
 				},
 			};
 		}

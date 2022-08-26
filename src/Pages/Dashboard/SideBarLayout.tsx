@@ -36,7 +36,7 @@ export const SideBarLayout = ({ children }: { children?: React.ReactNode }) => {
 					base: 0,
 					md: 60,
 				}}>
-				<Box as="main" p="1">
+				<Box as="main" p="1" bg="white">
 					{/* Add content here, remove div below  */}
 					{children}
 				</Box>

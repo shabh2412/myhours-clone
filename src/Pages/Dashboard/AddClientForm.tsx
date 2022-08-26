@@ -12,10 +12,12 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import ClientFormInput from "../../Components/Dashboard/Forms/ClientFormInput";
 import { postClient } from "../../Store/Clients/action";
 import { ClientType } from "../../Store/Clients/types";
+import { RootReducer } from "../../Store/store";
 
 type Props = {};
 
@@ -32,6 +34,8 @@ const initData: ClientType = {
 
 const AddClientForm = (props: Props) => {
 	const dispatch = useDispatch();
+
+	const { post } = useSelector((state: RootReducer) => state.clients);
 
 	const [data, setData] = useState<ClientType>(initData);
 	const handleUpdate = (name: string, value: string) => {
@@ -55,6 +59,10 @@ const AddClientForm = (props: Props) => {
 	// useEffect(() => {
 	// 	console.log(data);
 	// }, [data]);
+
+	if (post.success) {
+		return <Navigate to="../clients" />;
+	}
 
 	return (
 		<Container my="10">
@@ -111,6 +119,7 @@ const AddClientForm = (props: Props) => {
 				/>
 				<Flex justifyContent="start" alignItems="center" gap="5" my="4">
 					<Button
+						isLoading={post.loading}
 						onClick={handlePush}
 						disabled={
 							!data.contactPerson ||
