@@ -18,8 +18,8 @@ const Navbar = (props: Props) => {
 				<ListItem><Link to="/use-cases">Use Case</Link></ListItem>
 				<ListItem><Link to="/pricing">Pricing</Link></ListItem>
 				<ListItem><Link to="/support">Support</Link></ListItem>
-				<ListItem><Link to="/register">SignIn</Link></ListItem>
-				<ListItem color="#fff" bg="#3b8fc2" p="10px 30px" borderRadius="8px"><Link to="/">Get My Hours Free</Link></ListItem>
+				<ListItem><Link to="/login">SignIn</Link></ListItem>
+				<ListItem color="#fff" bg="#3b8fc2" p="10px 30px" borderRadius="8px"><Link to="/register">Get My Hours Free</Link></ListItem>
 			</UnorderedList>
 		</Flex>
 		<Box className={styles.iconBox}>
