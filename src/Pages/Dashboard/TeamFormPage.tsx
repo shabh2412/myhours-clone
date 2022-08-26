@@ -11,7 +11,7 @@ export type initialTeamState = {
     notes : string,
     role : "Manager" | "Normal" | "Admin",
     labour_rate : string,
-    billing_rate : string
+    billable_rate : string
 }
 
 const InitialState:initialTeamState = {
@@ -20,7 +20,7 @@ const InitialState:initialTeamState = {
     notes : "",
     role : "Normal",
     labour_rate : "",
-    billing_rate : ""
+    billable_rate : ""
 }
 
 export default function TeamFormPage(){
@@ -66,7 +66,7 @@ export default function TeamFormPage(){
             </Select>
             </Stack>
             <FormBillingOptions heading="Labour Rate" inputChange={inputChange} labour_rate={formData.labour_rate}/>
-            <FormBillingOptions heading="Billing Rate" inputChange={inputChange} billing_rate={formData.billing_rate}/>
+            <FormBillingOptions heading="Billing Rate" inputChange={inputChange} billable_rate={formData.billable_rate}/>
             <Box>
             <Button color="#fff" bg="#3b8fc2" display="inline-block" onClick={handleInvite}>Invite</Button>
             <Button ml="20px" color="#3b8fc2" onClick={(e) => handleCancel(e)}>Cancel</Button>  
