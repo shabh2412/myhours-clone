@@ -14,11 +14,11 @@ const Navbar = (props: Props) => {
 		</Box>
 		<Flex className={styles.menu}>
 			<UnorderedList display="flex" gap="40px" style={{listStyle : "none"}} fontWeight="600" fontSize="18px" color="#3b8fc2" alignItems="center">
-				<ListItem><Link to="/">How it Works</Link></ListItem>
-				<ListItem><Link to="/">Use Case</Link></ListItem>
-				<ListItem><Link to="/">Pricing</Link></ListItem>
-				<ListItem><Link to="/">Support</Link></ListItem>
-				<ListItem><Link to="/">SignIn</Link></ListItem>
+				<ListItem><Link to="/how-it-works">How it Works</Link></ListItem>
+				<ListItem><Link to="/use-cases">Use Case</Link></ListItem>
+				<ListItem><Link to="/pricing">Pricing</Link></ListItem>
+				<ListItem><Link to="/support">Support</Link></ListItem>
+				<ListItem><Link to="/register">SignIn</Link></ListItem>
 				<ListItem color="#fff" bg="#3b8fc2" p="10px 30px" borderRadius="8px"><Link to="/">Get My Hours Free</Link></ListItem>
 			</UnorderedList>
 		</Flex>
