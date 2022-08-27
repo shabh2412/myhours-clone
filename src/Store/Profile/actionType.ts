@@ -7,6 +7,24 @@ export const PROFILE_END_OF_WORKING_HOURS = "PROFILE_END_OF_WORKING_HOURS"
 export const PROFILE_ENABLE_NEW_TRACK = "PROFILE_ENABLE_NEW_TRACK"
 export const PROFILE_TIME_STEPS_IN_MINUTES = "PROFILE_TIME_STEPS_IN_MINUTES"
 export const PROFILE_SUB_OR_UNSUB_WEEKLY = "PROFILE_SUB_OR_UNSUB_WEEKLY"
+export const PROFILE_GET_USER_PROFILE_DATA_BY_ID = "PROFILE_GET_USER_PROFILE_DATA_BY_ID"
+export const PROFILE_GET_ID = "PROFILE_GET_ID"
+
+
+export interface gettedProfileDataForOnePerson {
+    name : string,
+    email : string,
+    workingOnweekends : boolean,
+    firstDayOfWeek : string,
+    startingWorkingHours : string,
+    endingWorkingHours : string,
+    enableNewTrack : boolean,
+    timeStepsInMinutes : string,
+    subOrUnsub : boolean,
+    isSessionActive : boolean,
+    _id : string,
+    userProfileRef : string
+}
 
 export interface ProfileSetUsername {
     type : typeof PROFILE_SET_USERNAME,
@@ -53,4 +71,14 @@ export interface ProfileSubOrUnsubWeekly {
     payload : boolean
 }
 
-export type ProfileDispatchHandler = ProfileSubOrUnsubWeekly | ProfileTimeStepsInMinutes | ProfileEnableNewTrack | ProfileEndOfWorkingHours | ProfileStartOfWorkingHours | ProfileFirstDayOfWeek | ProfileSetUsername | ProfileSetEmail | ProfileWorkingOnWeekends
+export interface ProfileGetUserDataById {
+    type : typeof PROFILE_GET_USER_PROFILE_DATA_BY_ID,
+    payload : gettedProfileDataForOnePerson
+}
+
+export interface ProfileGetId {
+    type : typeof PROFILE_GET_ID,
+    payload : string
+}
+
+export type ProfileDispatchHandler = ProfileGetId | ProfileGetUserDataById | ProfileSubOrUnsubWeekly | ProfileTimeStepsInMinutes | ProfileEnableNewTrack | ProfileEndOfWorkingHours | ProfileStartOfWorkingHours | ProfileFirstDayOfWeek | ProfileSetUsername | ProfileSetEmail | ProfileWorkingOnWeekends

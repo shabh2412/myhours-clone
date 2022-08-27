@@ -20,7 +20,9 @@ import FirebasePhone from "../Pages/day1/ForRegistration/ForAuth/FirebasePhone";
 import ResetPassword from "../Pages/day1/ForRegistration/ForResetPassword/ResetPassword";
 import LoginPage from "../Pages/day1/ForRegistration/Login";
 import Register from "../Pages/day1/ForRegistration/Register";
+import ForSupportPage from "../Pages/day1/ForSupport/ForSupportPage";
 import UseCase from "../Pages/day1/ForUseCase/UseCasePage";
+import Profile from "../Pages/ProfileAndOtherSection/Profile";
 
 const Allroutes = () => {
 	return (
@@ -67,6 +69,7 @@ const Allroutes = () => {
 						</Box>
 					}
 				/>
+				<Route path="support" element={<ForSupportPage />} ></Route>
 				<Route path="dashboard" element={<Dashboard />}>
 					<Route path="tasks" element={<Tasks />} />
 					<Route path="projects" element={<Projects />} />
@@ -75,6 +78,7 @@ const Allroutes = () => {
 					<Route path="team-members/new" element={<TeamFormPage />} />
 					<Route path="clients" element={<Clients />} />
 					<Route path="clients/new" element={<AddClientForm />} />
+					<Route path="profile" element={<Profile/>} />
 				</Route>
 				<Route path="/resetPassword" element={<ResetPassword />}></Route>
 			</Routes>
