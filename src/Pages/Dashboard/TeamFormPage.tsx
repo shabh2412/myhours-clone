@@ -1,11 +1,13 @@
 import { Box, Button, Flex, Heading, Input, Select, Stack,Text, Textarea } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { add_member } from "../../Store/Team/actions";
 import FormBillingOptions from "./Components/FormBillingOptions";
 
 
 export type initialTeamState = {
+    _id? : string,
     name : string,
     email : string,
     notes : string,
@@ -25,6 +27,7 @@ const InitialState:initialTeamState = {
 
 export default function TeamFormPage(){
     const [formData,setFormData] = useState<initialTeamState>(InitialState);
+    const  navigate = useNavigate();
     const dispatch = useDispatch();
 
     function inputChange(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>){
@@ -37,10 +40,11 @@ export default function TeamFormPage(){
 
     function handleInvite(){
         dispatch(add_member(formData));
+        navigate("/dashboard/team-members");
     }
 
     function handleCancel(e:React.MouseEvent){
-
+        navigate("/dashboard/team-members");
     }
     return (
         <form>
@@ -68,8 +72,8 @@ export default function TeamFormPage(){
             <FormBillingOptions heading="Labour Rate" inputChange={inputChange} labour_rate={formData.labour_rate}/>
             <FormBillingOptions heading="Billing Rate" inputChange={inputChange} billable_rate={formData.billable_rate}/>
             <Box>
-            <Button color="#fff" bg="#3b8fc2" display="inline-block" onClick={handleInvite}>Invite</Button>
-            <Button ml="20px" color="#3b8fc2" onClick={(e) => handleCancel(e)}>Cancel</Button>  
+            <Button disabled={formData.name === "" || formData.email === "" || formData.billable_rate === "" || formData.labour_rate === "" || formData.notes === ""} color="#fff" bg="#3b8fc2" display="inline-block" onClick={handleInvite}>Invite</Button>
+            <Button ml="20px" color="#3b8fc2" onClick={handleCancel}>Cancel</Button>  
             </Box>
         </Stack>
         </form>

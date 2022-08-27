@@ -60,7 +60,7 @@ export default function DataTable({ tableData, deleteHandler }: Props) {
 											variant={"ghost"}
 											colorScheme="blue"
 											onClick={() => {
-												dispatch(deleteHandler(el._id));
+												dispatch(deleteHandler(el._id || ""));
 												// @AnshGirdhar1 has to update prop type in the team initial state.
 											}}>
 											<DeleteIcon />

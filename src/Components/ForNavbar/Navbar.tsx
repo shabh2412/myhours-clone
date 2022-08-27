@@ -10,7 +10,7 @@ const Navbar = (props: Props) => {
 		<Box className={styles.navbar}>
 		<Flex w="100%" justifyContent="space-between" bg="#fff" boxShadow="1px 1px 15px #eeeeee" height="70px" alignItems="center" padding="0 60px">
 		<Box>
-		<Img maxW="150px" src="https://uploads-ssl.webflow.com/5c77a918ef19681741be7bca/5fd37c83dfa3ccb0d2d9836f_myhours-logo.svg" alt="logo" />
+		<Link to="/"><Img maxW="150px" src="https://uploads-ssl.webflow.com/5c77a918ef19681741be7bca/5fd37c83dfa3ccb0d2d9836f_myhours-logo.svg" alt="logo" /></Link>
 		</Box>
 		<Flex className={styles.menu}>
 			<UnorderedList display="flex" gap="40px" style={{listStyle : "none"}} fontWeight="600" fontSize="18px" color="#3b8fc2" alignItems="center">
