@@ -53,7 +53,9 @@ export default function DataTable({ tableData, deleteHandler }: Props) {
 				<Tbody>
 					{tableData.map((el, _index) => {
 						return (
-							<Tr key={_index}>
+							<Tr
+								key={_index}
+								_hover={{ backgroundColor: "#eaf3f9", cursor: "pointer" }}>
 								{deleteHandler && (
 									<Td>
 										<Button
