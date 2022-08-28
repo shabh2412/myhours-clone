@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "react";
+import { singleProjectType } from "./reducer";
 import {
 	ProjectDispatchHandler,
 	ProjectsGetError,
@@ -21,6 +22,12 @@ import {
 	PROJECT_UPDATE_ERROR,
 	PROJECT_UPDATE_LOADING,
 	PROJECT_UPDATE_SUCCESS,
+	SingleProjectGetError,
+	SingleProjectGetLoading,
+	SingleProjectGetSuccess,
+	SINGLE_PROJECT_GET_ERROR,
+	SINGLE_PROJECT_GET_LOADING,
+	SINGLE_PROJECT_GET_SUCCESS,
 } from "./type";
 
 const url = `https://my-hours.herokuapp.com/project`;
@@ -42,6 +49,30 @@ const projectsGetError = (value: boolean): ProjectsGetError => {
 const projectsGetSuccess = (payload: ProjectType[]): ProjectsGetSuccess => {
 	return {
 		type: PROJECT_GET_SUCCESS,
+		payload,
+	};
+};
+
+const singleProjectsGetLoading = (value: boolean): SingleProjectGetLoading => {
+	return {
+		type: SINGLE_PROJECT_GET_LOADING,
+		payload: value,
+	};
+};
+
+const singleProjectsGetError = (value: boolean): SingleProjectGetError => {
+	return {
+		type: SINGLE_PROJECT_GET_ERROR,
+		payload: value,
+	};
+};
+
+const singleProjectsGetSuccess = (
+	payload: singleProjectType
+): SingleProjectGetSuccess => {
+	console.log(payload);
+	return {
+		type: SINGLE_PROJECT_GET_SUCCESS,
 		payload,
 	};
 };
@@ -116,5 +147,19 @@ export const postProject =
 			})
 			.catch(() => {
 				dispatch(projectsPostError(true));
+			});
+	};
+
+export const getSelectedProject =
+	(_id: string): any =>
+	(dispatch: Dispatch<ProjectDispatchHandler>) => {
+		dispatch(singleProjectsGetLoading(true));
+		axios
+			.get(`${url}/${_id}`)
+			.then((res) => {
+				dispatch(singleProjectsGetSuccess(res.data));
+			})
+			.catch(() => {
+				dispatch(singleProjectsGetError(true));
 			});
 	};
