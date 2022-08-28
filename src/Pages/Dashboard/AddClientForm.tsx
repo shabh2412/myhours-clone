@@ -1,20 +1,8 @@
-import {
-	Box,
-	Button,
-	Container,
-	Flex,
-	FormControl,
-	FormLabel,
-	Heading,
-	Icon,
-	Input,
-	Link,
-	Text,
-} from "@chakra-ui/react";
+import { Button, Container, Flex, Heading, Icon } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import ClientFormInput from "../../Components/Dashboard/Forms/ClientFormInput";
+import { Navigate, useNavigate } from "react-router-dom";
+import CustomFormInput from "../../Components/Dashboard/Forms/CustomFormInput";
 import { postClient } from "../../Store/Clients/action";
 import { ClientType } from "../../Store/Clients/types";
 import { RootReducer } from "../../Store/store";
@@ -33,6 +21,7 @@ const initData: ClientType = {
 };
 
 const AddClientForm = (props: Props) => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const { post } = useSelector((state: RootReducer) => state.clients);
@@ -46,7 +35,9 @@ const AddClientForm = (props: Props) => {
 	};
 
 	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+		>
 	) => {
 		const { name, value } = e.currentTarget;
 		handleUpdate(name, value);
@@ -73,27 +64,27 @@ const AddClientForm = (props: Props) => {
 				<Icon color="#3b8fc2" fontWeight="bold" />
 			</Flex>
 			<form>
-				<ClientFormInput
+				<CustomFormInput
 					name="name"
 					value={data.name}
 					changeHandler={handleChange}
 				/>
-				<ClientFormInput
+				<CustomFormInput
 					name="contactPerson"
 					value={data.contactPerson}
 					changeHandler={handleChange}
 				/>
-				<ClientFormInput
+				<CustomFormInput
 					name="email"
 					value={data.email}
 					changeHandler={handleChange}
 				/>
-				<ClientFormInput
+				<CustomFormInput
 					name="phone"
 					value={data.phone}
 					changeHandler={handleChange}
 				/>
-				<ClientFormInput
+				<CustomFormInput
 					name="address"
 					value={data.address}
 					changeHandler={handleChange}
@@ -101,18 +92,18 @@ const AddClientForm = (props: Props) => {
 				/>
 				<hr />
 				<Flex gap="5">
-					<ClientFormInput
+					<CustomFormInput
 						name="taxName"
 						value={data.taxName}
 						changeHandler={handleChange}
 					/>
-					<ClientFormInput
+					<CustomFormInput
 						name="taxPercentage"
 						value={data.taxPercentage}
 						changeHandler={handleChange}
 					/>
 				</Flex>
-				<ClientFormInput
+				<CustomFormInput
 					name="taxNumber"
 					value={data.taxNumber}
 					changeHandler={handleChange}
@@ -134,7 +125,12 @@ const AddClientForm = (props: Props) => {
 						colorScheme="blue">
 						Save
 					</Button>
-					<Link href="/dashboard/clients">Cancel</Link>
+					<Button
+						onClick={() => {
+							navigate("/dashboard/clients");
+						}}>
+						Cancel
+					</Button>
 				</Flex>
 			</form>
 		</Container>
