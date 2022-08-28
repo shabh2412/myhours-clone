@@ -13,6 +13,7 @@ import TeamFormPage from "../Pages/Dashboard/TeamFormPage";
 import TeamMembers from "../Pages/Dashboard/TeamMembers";
 import ForHowItWorks from "../Pages/day1/ForHowItWorks/ForHowItWorks";
 import ForLandingPage from "../Pages/day1/ForLandingPage/ForLandingPage";
+import ForPricing from "../Pages/day1/ForPricing/ForPricingPage";
 import FirebasePhone from "../Pages/day1/ForRegistration/ForAuth/FirebasePhone";
 import ResetPassword from "../Pages/day1/ForRegistration/ForResetPassword/ResetPassword";
 import LoginPage from "../Pages/day1/ForRegistration/Login";
@@ -75,6 +76,16 @@ const Allroutes = () => {
 							<Footer />
 						</>
 					}></Route>
+				<Route
+					path="pricing"
+					element={
+						<>
+							<Navbar />
+							<ForPricing />
+							<Footer />
+						</>
+					}
+				/>
 				<Route path="dashboard" element={<Dashboard />}>
 					<Route path="tasks" element={<Tasks />} />
 					<Route path="projects" element={<Projects />} />
