@@ -37,7 +37,9 @@ function AddProject() {
 	const navigate = useNavigate();
 	const [data, setData] = useState(initData);
 	const { data: clients } = useSelector((state: RootReducer) => state.clients);
-	const teamMembers = useSelector((state: RootReducer) => state.teamMembers);
+	const { data: teamMembers } = useSelector(
+		(state: RootReducer) => state.teamMembers
+	);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -117,11 +119,11 @@ function AddProject() {
 					</FormLabel>
 					<Stack direction="row" flexWrap="wrap">
 						{teamMembers.length > 0 &&
-							teamMembers.map((member) => (
+							teamMembers.map((member, index) => (
 								<Checkbox
 									key={member._id}
 									onChange={() => {
-										handleTeamMemberToggle(member._id);
+										handleTeamMemberToggle(member._id || index.toString());
 									}}>
 									{member.name}
 								</Checkbox>
