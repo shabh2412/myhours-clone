@@ -13,9 +13,10 @@ import { initialTeamState } from "../TeamFormPage";
 import { BsPencilFill } from "react-icons/bs";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
+import { ProjectType } from "../../../Store/Projects/type";
 
 type Props = {
-	tableData: ClientType[] | initialTeamState[];
+	tableData: ClientType[] | initialTeamState[] | ProjectType[];
 	deleteHandler?: (name: string) => any;
 };
 
@@ -34,7 +35,7 @@ export default function DataTable({ tableData, deleteHandler }: Props) {
 						{deleteHandler && <Th>Delete</Th>}
 						<Th>Edit</Th>
 						{colHeading.map((cl) => {
-							if (cl === "_id") {
+							if (cl === "_id" || cl=="projectTeamMembers" || cl=="Client") {
 								return;
 							}
 							return (
@@ -76,6 +77,8 @@ export default function DataTable({ tableData, deleteHandler }: Props) {
 								</Td>
 								{Object.values(el).map((val, index) => {
 									if (index === 0) return;
+									let key = Object.keys(el)[index];
+									if (key === "projectTeamMembers" || key === "Client") return;
 									return <Td key={val}>{val}</Td>;
 								})}
 							</Tr>
