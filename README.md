@@ -15,11 +15,11 @@
  *[Click Here For Website Link](https://myhours.com/)*.
 
 ## Team Members
-1. Rishabh Panesar ( fw18_0611)
-2. Pankaj Kandpal ( fw18_0523 )
-3. Ansh Girdhar  ( fw18_0096 )
-4. Sneha ( fw18_1249 )
-5. Vaibhav Joshi ( fp03_150 )
+1. [Rishabh Panesar (fw18_0611)](https://github.com/shabh2412)
+2. [Pankaj Kandpal (fw18_0523)](https://github.com/PankajkandpalL)
+3. [Ansh Girdhar  (fw18_0096)]([url](https://github.com/AnshGirdhar1))
+4. [Sneha (fw18_1249)](https://github.com/sneha052022)
+5. [Vaibhav Joshi (fp03_150)](https://github.com/vaibhavj478)
 
 ## Tools and Language used
    ### Frontend
