@@ -2,6 +2,9 @@ import React from "react";
 
 import { BiDollar } from "react-icons/bi";
 import { TiTick } from "react-icons/ti";
+
+import {BsArrowDownShort} from "react-icons/bs"
+
 import "./forPricingPage.css";
 
 interface Card {
@@ -364,8 +367,8 @@ const ForPricing = (props: Props) => {
         <div className="headerContainer ">
           <div className="headerTopContainer">
             <h1 className="slimHeading">Pick your plan</h1>
-            <p>
-              <b>Track time on projects with your team.</b>
+            <p  style={{width:'80%' , margin:"1rem auto" ,fontSize:"200%", fontWeight:"600" }} >
+              Track time on projects with your team.
             </p>
           </div>
 
@@ -462,7 +465,7 @@ const ForPricing = (props: Props) => {
             </ul>
             </div>
 
-            <div className="featureContainer ">
+            <div className="featureBottom ">
             {featuresInfo.map((el: Feature, ind: number) => {
               return (
                 <>
@@ -528,7 +531,17 @@ const ForPricing = (props: Props) => {
           <div className="fnqQuestion ">
 
               {
+                fnq.map((el:string,ind:number)=>{
 
+                  return (
+
+                    <div style={{display:"flex", justifyContent:"space-between" }} key={ind} >
+                        {el}
+                        <BsArrowDownShort/>
+                    </div>
+
+                  )
+                })
                 
               }
 
@@ -536,6 +549,9 @@ const ForPricing = (props: Props) => {
         </div>
 
         <div className="footerContainer">
+
+            <div className="footerUpper">
+
           <div className="thought">
             “ I have tested similar time tracking apps but they all have limits.
             My Hours is without a doubt the most important tool I use in my
@@ -556,23 +572,25 @@ const ForPricing = (props: Props) => {
               <h1>4.7 /5</h1>
             </div>
           </div>
+          </div>
+
 
           <div className="footerBottom">
             <div className="right">
-              <h1>Waste no more time, jump right in!</h1>
-              <button>Get Started - It's Free</button>
-              <p>
+              <h1 style={{fontSize:"2rem"}}  >Waste no more time, jump right in!</h1>
+              <button  style={{backgroundColor:"#7ccbfc" , color:"#fff" ,padding:"1rem",margin:"0.5rem 0" }}  >Get Started - It's Free</button>
+              <p  style={{color: "#212529"}} >
                 My Hours is Free to use for teams of any size. Pro paid plan
                 comes with additional features like invoicing, admin controls
                 and priority support.
               </p>
             </div>
             <div className="left">
-              <h1>Need more info? Get a product demo.</h1>
+              <h1 style={{fontSize:"2rem"}}  >Need more info? Get a product demo.</h1>
 
-              <button>Talk to our Team</button>
+              <button  style={{backgroundColor:"#fff" , color:"#7ccbfc" ,padding:"1rem",margin:"0.5rem 0" , border:"1px solid #7ccbfc" }}  >Talk to our Team</button>
 
-              <p>
+              <p  style={{color: "#212529"}}  > 
                 Teams of 6+ are welcome to book a personalized demo to see how
                 My Hours works in detail.
               </p>

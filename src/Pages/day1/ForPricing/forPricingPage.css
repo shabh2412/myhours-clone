@@ -1,124 +1,214 @@
-h1,h2,h3,h4,b{
-
-
-    color:#375d75 ;
-    font-size: 40px;
-    /* margin: 1rem 1.5rem; */
+h1,
+h2,
+h3,
+h4,
+b {
+  color: #375d75;
+  font-size: 40px;
+  /* margin: 1rem 1.5rem; */
 }
 
-
-div , span , p , a {
-
-
-    text-decoration: none;
-    color: #212529;
+div,
+span,
+p,
+a {
+  text-decoration: none;
+  color: #212529;
 }
 
+.container {
+  display: flex;
 
+  flex-direction: column;
 
+  justify-content: center;
 
+  align-items: center;
 
-
-
-
-.container{
-
-
-
-display: flex;
-
-flex-direction: column ;
-
-justify-content: center;
-
-align-items: center;
-
-border: 1px solid red;
-width: 95%;
+  /* border: 1px solid red; */
+  width: 95%;
 }
 
-
-
-
-.headerContainer{
-    width: 90%;
-    margin: auto;
-    border: 1px solid red;
-    padding: 0%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+.headerContainer {
+  width: 90%;
+  margin: auto;
+  /* border: 1px solid red; */
+  padding: 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-
-
-.headerTopContainer , .fnqContainer, .footerContainer{
-    width : 90%;
+.headerTopContainer,
+.fnqContainer,
+.footerContainer,
+.featureContainer {
+  width: 90%;
 }
 
-
-
-.slimHeading{
-    color: #212529;
-    font-size: 10vh;
-    font-weight: 200;
-    width: 100%;
-    text-align: center;
-    margin: 1rem 0;
-    padding: 1rem;
-    border: 1px solid red;
+.slimHeading {
+  color: #212529;
+  font-size: 10vh;
+  font-weight: 200;
+  width: 100%;
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  /* border: 1px solid red; */
 }
 
-
-.headerTopContainer:last-child{
-
+.headerTopContainer> p {
   text-align: center;
 
-   flex-wrap: wrap;
-   flex-grow: inherit;
-   flex-shrink: 1;
-   border: 1px solid yellow;
+ 
+  /* border: 1px solid yellow; */
 }
 
+.headerBottomContainer {
+  width: 80%;
+  display: flex;
 
-.headerBottomContainer{
+  margin: 1rem auto;
+  /* border: 1px solid yellow; */
+flex-direction: column;
 
-    width: 80%;
-    display: flex;
-
- border: 1px solid yellow;
- flex-wrap: wrap;
- flex-grow: inherit;
- flex-shrink: 1;
-
- gap: 1rem;
- 
-
- 
+justify-content: space-between;
+  gap: 2.5rem;
 }
-
 
 .headerBottomContainer > .priceCard {
+  /* border: 1px solid pink; */
+  width: 25rem;
+margin: 0.25rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-transform: capitalize;
+  font-size: 1rem;
+  margin: 1rem 0;
+  min-height: 30rem;
+}
 
-    border:  1px solid pink;
-    width: 30rem;
+.featureContainer > .featureHead {
+  width: 90%;
+  /* border: 1px solid red; */
+  margin: 2rem auto 0;
+}
+.featureContainer > .featureBottom {
+  width: 90%;
+  /* border: 1px solid red; */
+  margin: 0 auto 2rem;
+}
 
-    text-transform: capitalize;
-    font-size: 1rem;
-    margin: 1rem 0;
-    
- 
+.fnqContainer > .fnqQuestion {
+  width: 80%;
+  text-align: center;
+  margin: 1rem auto 1rem;
+}
+
+.fnqQuestion > div {
+  margin: 0.25rem;
+  padding: 0.25rem 0;
+}
+
+.fnqContainer > .fnqHead {
+  width: 80%;
+  text-align: center;
+  margin: 1rem auto 0;
+}
+
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+
+  width: 90%;
+}
+
+.footerUpper {
+  color: #212529;
+  background-color: #7ccbfc;
+  padding: 1.5rem 0;
+}
+
+.thought {
+  width: 80%;
+  margin: 1rem auto;
+  font-size: 200%;
+  font-weight: 50;
+  line-height: 150%;
+  text-align: center;
+  text-transform: capitalize;
+    word-spacing: 0.25rem;
+  padding: 1rem;
+}
+
+.facts {
+  width: 80%;
+  margin: 1rem auto;
+  font-size: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.facts > div {
+    /* border: 1px solid red ; */
+    min-width: 225px;
+    text-align: center;
 }
 
 
-
-
-.fnqContainer:first-child{
-
+.footerBottom{
 
     width: 80%;
-    text-align: center;
     margin: 1rem auto;
-} 
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+
+}
+
+
+.right , .left{
+
+    background-color: rgba(241, 154, 222, 0.212);
+    margin: 1rem 0 ;
+    padding: 1rem;
+    min-width: 350px;
+    max-width: 500px;
+    min-height: 275px;
+    
+
+}
+
+
+@media (min-width: 550px) and (max-width: 1450px) { 
+
+    .headerBottomContainer{
+
+        flex-direction: row;
+    }
+
+.featureContainer{
+    font-size: 150%;
+}
+
+.facts{
+    flex-direction: row;
+}
+
+.footerBottom{
+
+
+
+    flex-direction: row;
+}
+
+}
