@@ -33,6 +33,8 @@ function Profile() {
 
   const { handleRefreshandGet,handleSubmitData,state,handleSubOrUnsub,handleTimeSteps,handleEnableNewTrackAction,handleEndworkingHours,handleFullNameInput,handleEmailInput,handleWorkingOnWeekends,handleDaySelect,handleStartWorkingHours } = useProfile()
 
+  console.log(state.profileGettedsUserData)
+
   return (
     <Box marginLeft={'-300px'} marginTop='-80px' >
       <Box
