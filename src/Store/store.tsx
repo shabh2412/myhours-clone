@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { clientReducer } from "./Clients/reducer";
 import { loginReducer } from "./Login/reducer";
 import { profileReducer } from "./Profile/reducer";
+import { projectReducer } from "./Projects/reducer";
 import { registerReducer } from "./Register/reducer";
 import { teamReducer } from "./Team/reducer";
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
 	profile: profileReducer,
 	clients: clientReducer,
 	teamMembers: teamReducer,
+	projects: projectReducer,
 });
 
 const middleware = applyMiddleware(thunk);

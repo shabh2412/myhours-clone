@@ -12,7 +12,7 @@ import {
 	CLIENTS_DELETE_SUCCESS,
 } from "./types";
 
-type loadingSuccessOrError = {
+export type loadingSuccessOrError = {
 	loading: boolean;
 	error: boolean;
 	success: boolean;
