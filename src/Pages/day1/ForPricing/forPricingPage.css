@@ -1,20 +1,6 @@
-h1,
-h2,
-h3,
-h4,
-b {
-  color: #375d75;
-  font-size: 40px;
-  /* margin: 1rem 1.5rem; */
-}
 
-div,
-span,
-p,
-a {
-  text-decoration: none;
-  color: #212529;
-}
+
+
 
 .container {
   display: flex;
