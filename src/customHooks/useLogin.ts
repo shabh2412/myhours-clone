@@ -12,7 +12,8 @@ interface ReturnLogin {
   stat : LoginInit,
   handleNewPassword : ( e : string ) => void,
   handleConfirmNewPassword : ( e: string ) => void,
-  handleChangingPassword : () => void
+  handleChangingPassword : () => void,
+  handleNavigate : () => void
 }
 
 const useLogin = () : ReturnLogin => {
@@ -63,7 +64,11 @@ const useLogin = () : ReturnLogin => {
       dispatch(resetThePasswordInBackend(state.setUserIdForResetPassword,stat.resetConfirmPassword))
 
     }
-  
+
+    let handleNavigate = (): void => {
+      navigate("/resetPassword")
+    }
+   
     useEffect(()=>{
       if(stat.isError)
       {
@@ -90,7 +95,7 @@ const useLogin = () : ReturnLogin => {
           isClosable: true,
           position : "top"
         })
-        // navigate("/")
+        navigate("/dashboard/team-members")
         dispatch(logInAuthChange(false))
       }
     },[stat.isAuthed])
@@ -113,7 +118,7 @@ const useLogin = () : ReturnLogin => {
 
     },[stat.passwordChanged])
 
-    return { handleInput, handleAdd, stat, handleNewPassword, handleConfirmNewPassword, handleChangingPassword }
+    return { handleNavigate,handleInput, handleAdd, stat, handleNewPassword, handleConfirmNewPassword, handleChangingPassword }
 
 }
 
