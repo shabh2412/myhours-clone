@@ -6,6 +6,7 @@ import { profileReducer } from "./Profile/reducer";
 import { projectReducer } from "./Projects/reducer";
 import { registerReducer } from "./Register/reducer";
 import { teamReducer } from "./Team/reducer";
+import { trackReducer } from "./Track/reducer";
 
 const rootReducer = combineReducers({
 	register: registerReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
 	clients: clientReducer,
 	teamMembers: teamReducer,
 	projects: projectReducer,
+	track : trackReducer
 });
 
 const middleware = applyMiddleware(thunk);
