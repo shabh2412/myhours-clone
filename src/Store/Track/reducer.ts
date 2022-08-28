@@ -37,7 +37,7 @@ const TackInitialState: TrackInit = {
    carryingTask : "",
    carryingDescription : "",
    carryingTimeGap :"",
-   timeLogArr : []
+   timeLogArr : JSON.parse(localStorage.getItem("timeLogArr") || "[]")
 
 }
 
@@ -150,10 +150,13 @@ export const trackReducer = ( state = TackInitialState, { type,payload } : Track
             }
         }
         case TRACK_TIME_LOG_ARR : {
-            return {
+            // localStorage.setItem("timeLogArr",JSON.stringify([...state.timeLogArr,...payload]));
+            const newState = {
                 ...state,
                 timeLogArr : [ ...state.timeLogArr,...payload ]
             }
+            localStorage.setItem("timeLogArr", JSON.stringify(newState.timeLogArr));
+            return newState
         }
         default : return state
     }
