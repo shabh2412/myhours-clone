@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { RegisterCompanyCountryAction, RegisterCompanyMobileAction, setCompanyDataAndGetCompanyId, setValueForEveryInputInPersonalDetails, setValueOfAuthentication } from './../Store/Register/action';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -5,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchCountriesForSelectTag, ForRegisterSetEmail, ForRegisterSetUsername, JustChangeStatus, postUserAndGetToken, queryCheckEmail, queryCheckUsername, RegisterCompanyNameAction, RegisterSetPassword } from '../Store/Register/action'
 import { RootReducer } from '../Store/store'
 import { Init } from '../Store/Register/reducer'
+import { useToast } from '@chakra-ui/react';
                      
 export type RegisterRe = {
     state: Init,
@@ -24,6 +26,9 @@ const useRegister = (): RegisterRe => {
     const state = useSelector((state : RootReducer) => state.register)
     const dispatch = useDispatch()
     const [ pageChange,setPageChange ] = useState<boolean>(false)
+    const [ bool,setBool ] = useState<boolean>(false)
+    const navigate = useNavigate()
+    const toast = useToast()
   
     let handleInput = ( e: string ): void => {
       dispatch(ForRegisterSetEmail(e))
@@ -46,10 +51,7 @@ const useRegister = (): RegisterRe => {
       {
         dispatch(postUserAndGetToken(state.userObj))
       }
-      if(state.isEmailAvailable && state.isUsernameAvailable)
-      {
         dispatch(setValueOfAuthentication(true))
-      }
     }
 
     //back button
@@ -83,6 +85,7 @@ const useRegister = (): RegisterRe => {
     let handleAddCompanyData = (): void => {
       
       dispatch(setCompanyDataAndGetCompanyId(state.userCompanyDetails))
+      setBool(true)
 
     }
 
@@ -94,6 +97,22 @@ const useRegister = (): RegisterRe => {
     //   }
 
     // },[state.token])
+
+    useEffect(()=>{
+      if(bool)
+      {
+        toast({
+          title: 'Success',
+          description: "Registered Succesfully!",
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+          position : "top"
+        })
+        navigate("/login")
+        setBool(false)
+      }
+    },[bool])
 
     useEffect(()=>{
       dispatch(fetchCountriesForSelectTag())
