@@ -64,11 +64,6 @@ export default function DataTable({
 					{tableData.map((el, _index) => {
 						return (
 							<Tr
-								onClick={() => {
-									if (navigateHandler) {
-										navigateHandler(el._id || "");
-									}
-								}}
 								key={_index}
 								_hover={{ backgroundColor: "#eaf3f9", cursor: "pointer" }}>
 								{deleteHandler && (
@@ -93,7 +88,17 @@ export default function DataTable({
 									let objKey = Object.keys(el)[index];
 									if (objKey === "projectTeamMembers" || objKey === "Client")
 										return;
-									return <Td key={val.toString()}>{val}</Td>;
+									return (
+										<Td
+											onClick={() => {
+												if (navigateHandler) {
+													navigateHandler(el._id || "");
+												}
+											}}
+											key={val.toString()}>
+											{val}
+										</Td>
+									);
 								})}
 							</Tr>
 						);
