@@ -35,7 +35,11 @@ export default function DataTable({ tableData, deleteHandler }: Props) {
 						{deleteHandler && <Th>Delete</Th>}
 						<Th>Edit</Th>
 						{colHeading.map((cl) => {
-							if (cl === "_id" || cl=="projectTeamMembers" || cl=="Client") {
+							if (
+								cl === "_id" ||
+								cl == "projectTeamMembers" ||
+								cl == "Client"
+							) {
 								return;
 							}
 							return (
@@ -64,7 +68,6 @@ export default function DataTable({ tableData, deleteHandler }: Props) {
 											colorScheme="blue"
 											onClick={() => {
 												dispatch(deleteHandler(el._id || ""));
-												// @AnshGirdhar1 has to update prop type in the team initial state.
 											}}>
 											<DeleteIcon />
 										</Button>
@@ -77,9 +80,10 @@ export default function DataTable({ tableData, deleteHandler }: Props) {
 								</Td>
 								{Object.values(el).map((val, index) => {
 									if (index === 0) return;
-									let key = Object.keys(el)[index];
-									if (key === "projectTeamMembers" || key === "Client") return;
-									return <Td key={val}>{val}</Td>;
+									let objKey = Object.keys(el)[index];
+									if (objKey === "projectTeamMembers" || objKey === "Client")
+										return;
+									return <Td key={val.toString()}>{val}</Td>;
 								})}
 							</Tr>
 						);
