@@ -1,16 +1,13 @@
 import { Box } from "@chakra-ui/react";
-import React from "react";
 import { Route, Routes } from "react-router-dom";
-import SectionHeader from "../Components/Dashboard/SectionHeaders/SectionHeader";
-import { SidebarContent } from "../Components/Dashboard/SideBar/SideBarContent";
 import Footer from "../Components/ForFooter/Footer";
 import Navbar from "../Components/ForNavbar/Navbar";
 import AddClientForm from "../Pages/Dashboard/AddClientForm";
+import AddProject from "../Pages/Dashboard/AddProject";
 import Clients from "../Pages/Dashboard/Clients";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Projects from "../Pages/Dashboard/Projects";
 import Reports from "../Pages/Dashboard/Reports";
-import { SideBarLayout } from "../Pages/Dashboard/SideBarLayout";
 import Tasks from "../Pages/Dashboard/Tasks";
 import TeamFormPage from "../Pages/Dashboard/TeamFormPage";
 import TeamMembers from "../Pages/Dashboard/TeamMembers";
@@ -69,16 +66,17 @@ const Allroutes = () => {
 						</Box>
 					}
 				/>
-				<Route path="support" element={<ForSupportPage />} ></Route>
+				<Route path="support" element={<ForSupportPage />}></Route>
 				<Route path="dashboard" element={<Dashboard />}>
 					<Route path="tasks" element={<Tasks />} />
 					<Route path="projects" element={<Projects />} />
+					<Route path="projects/new" element={<AddProject />} />
 					<Route path="reports" element={<Reports />} />
 					<Route path="team-members" element={<TeamMembers />} />
 					<Route path="team-members/new" element={<TeamFormPage />} />
 					<Route path="clients" element={<Clients />} />
 					<Route path="clients/new" element={<AddClientForm />} />
-					<Route path="profile" element={<Profile/>} />
+					<Route path="profile" element={<Profile />} />
 				</Route>
 				<Route path="/resetPassword" element={<ResetPassword />}></Route>
 			</Routes>
