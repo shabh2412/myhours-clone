@@ -66,7 +66,15 @@ const Allroutes = () => {
 						</Box>
 					}
 				/>
-				<Route path="support" element={<ForSupportPage />}></Route>
+				<Route
+					path="support"
+					element={
+						<>
+							<Navbar />
+							<ForSupportPage />
+							<Footer />
+						</>
+					}></Route>
 				<Route path="dashboard" element={<Dashboard />}>
 					<Route path="tasks" element={<Tasks />} />
 					<Route path="projects" element={<Projects />} />
