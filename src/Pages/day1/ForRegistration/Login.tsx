@@ -11,7 +11,8 @@ import { NavLink } from "react-router-dom";
 import useLogin from "../../../customHooks/useLogin";
 
 const LoginPage = () => {
-	const { handleInput, handleAdd, stat } = useLogin();
+	const { handleNavigate,handleInput, handleAdd, stat } = useLogin();
+	
 
 	return (
 		<Container>
@@ -81,7 +82,9 @@ const LoginPage = () => {
 							textDecoration: "underline",
 							color: "#246388",
 							cursor: " pointer",
-						}}>
+						}}
+						onClick={()=>handleNavigate()}
+						>
 						Reset Password
 					</Box>
 				</Box>
