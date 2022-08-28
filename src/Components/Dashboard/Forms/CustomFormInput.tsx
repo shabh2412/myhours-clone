@@ -4,11 +4,15 @@ import React from "react";
 type Props = {
 	name: string;
 	value: string;
-	changeHandler: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+	changeHandler: (
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+		>
+	) => void;
 	isTextArea?: boolean;
 };
 
-const ClientFormInput = ({
+const CustomFormInput = ({
 	name,
 	value,
 	changeHandler,
@@ -46,4 +50,4 @@ const ClientFormInput = ({
 	);
 };
 
-export default ClientFormInput;
+export default CustomFormInput;
