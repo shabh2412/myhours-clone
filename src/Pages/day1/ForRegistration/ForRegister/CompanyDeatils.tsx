@@ -46,7 +46,8 @@ const CompanyDeatils = ( { handlePageChange,pageChange } : Props ) => {
 		  <Box px='2px' py='20px' >
 		  </Box >
           <Box display={'flex'} justifyContent='center' marginTop={'15px'} alignItems={'center'} >
-			<Button onClick={()=>handleAddCompanyData()} disabled={ !state.userCompanyDetails?.companyName || !state.userCompanyDetails?.companySize || !state.userCompanyDetails?.countryy } marginTop={'0px'} bgColor='#80b7d8' color={'white'} variant={'solid'} >Create New Company</Button>
+			<Button onClick={()=>handleAddCompanyData()} disabled={ !state.userCompanyDetails?.companyName || !state.userCompanyDetails?.companySize || !state.userCompanyDetails?.countryy } marginTop={'0px'} bgColor='#80b7d8' color={'white'} variant={'solid'} >
+        Create New Company</Button>
 		  </Box>
           <Box onClick={()=>{
             handlePageChange(false)
