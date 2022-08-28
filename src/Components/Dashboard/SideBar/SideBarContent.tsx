@@ -11,7 +11,7 @@ import { GoGraph } from "react-icons/go";
 import { GrGroup } from "react-icons/gr";
 import { HiChevronRight } from "react-icons/hi";
 import { IoFolderOutline } from "react-icons/io5";
-import { MdHome } from "react-icons/md";
+import { MdHome, MdPerson } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import Logo from "../../Icon/Logo";
 import { NavItem } from "./NavItem";
@@ -152,6 +152,9 @@ export const SidebarContent = ({
 						</NavItem>
 					</Box>
 				</Collapse>
+				<NavItem icon={MdPerson}>
+					<NavLink to="profile">Profile</NavLink>
+				</NavItem>
 			</Flex>
 		</Box>
 	);
