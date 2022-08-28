@@ -6,6 +6,7 @@ import AddClientForm from "../Pages/Dashboard/AddClientForm";
 import AddProject from "../Pages/Dashboard/AddProject";
 import Clients from "../Pages/Dashboard/Clients";
 import Dashboard from "../Pages/Dashboard/Dashboard";
+import ProjectPage from "../Pages/Dashboard/ProjectPage";
 import Projects from "../Pages/Dashboard/Projects";
 import Reports from "../Pages/Dashboard/Reports";
 import Tasks from "../Pages/Dashboard/Tasks";
@@ -90,6 +91,7 @@ const Allroutes = () => {
 					<Route path="tasks" element={<Tasks />} />
 					<Route path="projects" element={<Projects />} />
 					<Route path="projects/new" element={<AddProject />} />
+					<Route path="projects/:_id" element={<ProjectPage />} />
 					<Route path="reports" element={<Reports />} />
 					<Route path="team-members" element={<TeamMembers />} />
 					<Route path="team-members/new" element={<TeamFormPage />} />

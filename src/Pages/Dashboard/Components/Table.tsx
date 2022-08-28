@@ -18,12 +18,17 @@ import { ProjectType } from "../../../Store/Projects/type";
 type Props = {
 	tableData: ClientType[] | initialTeamState[] | ProjectType[];
 	deleteHandler?: (name: string) => any;
+	navigateHandler?: (_id: string) => any;
 };
 
 const temp = (name = "") => {};
 
 // {tableData}:{tableData:any[]}
-export default function DataTable({ tableData, deleteHandler }: Props) {
+export default function DataTable({
+	tableData,
+	deleteHandler,
+	navigateHandler,
+}: Props) {
 	const dispatch = useDispatch();
 	const colHeading = Object.keys(tableData[0]);
 	console.log(colHeading);
@@ -83,7 +88,17 @@ export default function DataTable({ tableData, deleteHandler }: Props) {
 									let objKey = Object.keys(el)[index];
 									if (objKey === "projectTeamMembers" || objKey === "Client")
 										return;
-									return <Td key={val.toString()}>{val}</Td>;
+									return (
+										<Td
+											onClick={() => {
+												if (navigateHandler) {
+													navigateHandler(el._id || "");
+												}
+											}}
+											key={val.toString()}>
+											{val}
+										</Td>
+									);
 								})}
 							</Tr>
 						);

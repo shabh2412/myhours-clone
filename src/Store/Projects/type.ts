@@ -1,3 +1,5 @@
+import { singleProjectType } from "./reducer";
+
 export type ProjectType = {
 	_id?: string;
 	name: string;
@@ -11,6 +13,10 @@ export type ProjectType = {
 export const PROJECT_POST_LOADING = "PROJECT_POST_LOADING";
 export const PROJECT_POST_SUCCESS = "PROJECT_POST_SUCCESS";
 export const PROJECT_POST_ERROR = "PROJECT_POST_ERROR";
+
+export const SINGLE_PROJECT_GET_LOADING = "SINGLE_PROJECT_GET_LOADING";
+export const SINGLE_PROJECT_GET_SUCCESS = "SINGLE_PROJECT_GET_SUCCESS";
+export const SINGLE_PROJECT_GET_ERROR = "SINGLE_PROJECT_GET_ERROR";
 
 export const PROJECT_GET_LOADING = "PROJECT_GET_LOADING";
 export const PROJECT_GET_SUCCESS = "PROJECT_GET_SUCCESS";
@@ -32,6 +38,20 @@ export interface ProjectsGetLoading {
 
 export interface ProjectsGetError {
 	type: typeof PROJECT_GET_ERROR;
+	payload: boolean;
+}
+export interface SingleProjectGetSuccess {
+	type: typeof SINGLE_PROJECT_GET_SUCCESS;
+	payload: singleProjectType;
+}
+
+export interface SingleProjectGetLoading {
+	type: typeof SINGLE_PROJECT_GET_LOADING;
+	payload: boolean;
+}
+
+export interface SingleProjectGetError {
+	type: typeof SINGLE_PROJECT_GET_ERROR;
 	payload: boolean;
 }
 
@@ -74,4 +94,7 @@ export type ProjectDispatchHandler =
 	| ProjectsPostSuccess
 	| ProjectsUpdateLoading
 	| ProjectsUpdateSuccess
-	| ProjectsUpdateError;
+	| ProjectsUpdateError
+	| SingleProjectGetLoading
+	| SingleProjectGetError
+	| SingleProjectGetSuccess;

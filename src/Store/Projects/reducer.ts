@@ -1,21 +1,54 @@
+import { initialTeamState } from "../../Pages/Dashboard/TeamFormPage";
 import { loadingSuccessOrError } from "../Clients/reducer";
+import { ClientType } from "../Clients/types";
 import {
 	ProjectDispatchHandler,
 	ProjectType,
 	PROJECT_GET_ERROR,
 	PROJECT_GET_LOADING,
 	PROJECT_GET_SUCCESS,
+	SINGLE_PROJECT_GET_ERROR,
+	SINGLE_PROJECT_GET_LOADING,
+	SINGLE_PROJECT_GET_SUCCESS,
 } from "./type";
+
+export type singleProjectType = {
+	_id?: string;
+	name: string;
+	Client: ClientType;
+	description: string;
+	duration?: string;
+	difficulty?: string;
+	projectTeamMembers: initialTeamState[];
+};
 
 type initProjectStateType = {
 	data: ProjectType[];
+	selectedProject?: singleProjectType;
 	get: loadingSuccessOrError;
 	post: loadingSuccessOrError;
 	_delete: loadingSuccessOrError;
 };
 
-const initialProjectState = {
+const initialProjectState: initProjectStateType = {
 	data: [],
+	selectedProject: {
+		_id: "",
+		Client: {
+			_id: "",
+			name: "",
+			contactPerson: "",
+			email: "",
+			phone: "",
+			address: "",
+			taxName: "",
+			taxPercentage: "",
+			taxNumber: "",
+		},
+		description: "",
+		name: "",
+		projectTeamMembers: [],
+	},
 	get: {
 		loading: false,
 		success: false,
@@ -67,6 +100,25 @@ export const projectReducer = (
 					error: false,
 				},
 			};
+		}
+		case SINGLE_PROJECT_GET_ERROR: {
+			return {
+				...state,
+			};
+		}
+		case SINGLE_PROJECT_GET_LOADING: {
+			return { ...state };
+		}
+		case SINGLE_PROJECT_GET_SUCCESS: {
+			const newState = {
+				...state,
+				selectedProject: payload,
+			};
+			console.log(newState);
+			return newState;
+		}
+		case SINGLE_PROJECT_GET_ERROR: {
+			return { ...state };
 		}
 		default: {
 			return {
