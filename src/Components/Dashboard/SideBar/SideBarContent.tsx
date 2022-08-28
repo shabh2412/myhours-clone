@@ -12,7 +12,7 @@ import { GrGroup } from "react-icons/gr";
 import { HiChevronRight } from "react-icons/hi";
 import { IoFolderOutline } from "react-icons/io5";
 import { MdHome, MdPerson } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../../Icon/Logo";
 import { NavItem } from "./NavItem";
 
@@ -28,6 +28,7 @@ export const SidebarContent = ({
 	const teams = useDisclosure();
 	const clients = useDisclosure();
 	const reports = useDisclosure();
+	const navigate = useNavigate();
 	return (
 		<Box
 			w={w && w}
@@ -48,7 +49,17 @@ export const SidebarContent = ({
 				base: "none",
 				md: "unset",
 			}}>
-			<Flex px="4" py="5" align="center" gap="10px">
+			<Flex
+				px="4"
+				py="5"
+				align="center"
+				gap="10px"
+				_hover={{
+					cursor: "pointer",
+				}}
+				onClick={() => {
+					navigate("tasks");
+				}}>
 				<BsGrid3X3GapFill />
 				<Logo />
 			</Flex>
