@@ -1,9 +1,10 @@
-import { loadDataLocalStorage } from './../Utils/localData';
+import { useNavigate } from 'react-router-dom';
+import { loadDataLocalStorage, removeDataLocalStorage } from './../Utils/localData';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { RootReducer } from './../Store/store';
 import { useSelector } from 'react-redux';
-import { ProfileEnableNewTrackAction, ProfileEndOfWorkingHoursAction, ProfileFirstDayOfWeekAction, profileGetData, profilePostData, ProfileSetEmailAction, ProfileSetUsernameAction, ProfileStartOfWorkingHoursAction, ProfileSubOrUnsubWeeklyAction, ProfileTimeStepsInMinutesAction, profileUpdatingData, ProfileWorkingOnWeekendsAction } from '../Store/Profile/action';
+import { ProfileEnableNewTrackAction, ProfileEndOfWorkingHoursAction, ProfileFirstDayOfWeekAction, profileGetData, profilePostData, ProfileSetEmailAction, ProfileSetUsernameAction, profileSignOut, ProfileStartOfWorkingHoursAction, ProfileSubOrUnsubWeeklyAction, ProfileTimeStepsInMinutesAction, profileUpdatingData, ProfileWorkingOnWeekendsAction } from '../Store/Profile/action';
 import { ProfileInit } from '../Store/Profile/reducer';
 
 
@@ -20,7 +21,8 @@ export type ReturnUserProfile = {
     handleSubOrUnsub : (e : boolean) => void,
     state : ProfileInit,
     handleSubmitData : () => void,
-    handleRefreshandGet : () => void
+    handleRefreshandGet : () => void,
+    handleSignOut : () => void
 
 }
 
@@ -29,6 +31,7 @@ const useProfile = () : ReturnUserProfile => {
 
     const state = useSelector((state : RootReducer)=> state.profile)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleFullNameInput = (e: string) : void => {
         dispatch(ProfileSetUsernameAction(e))
@@ -112,6 +115,12 @@ const useProfile = () : ReturnUserProfile => {
         dispatch(profileGetData(state.profileUserId))
     }
 
+    const handleSignOut = () => {
+        localStorage.clear()
+        dispatch(profileSignOut())
+        navigate("/")
+    }
+
     useEffect(()=>{
         if(!!(loadDataLocalStorage('userProfileMd5Hash')))
         {
@@ -119,7 +128,7 @@ const useProfile = () : ReturnUserProfile => {
         }
     },[state.profileUserId])
 
-    return { handleRefreshandGet,handleSubmitData,state,handleSubOrUnsub,handleTimeSteps,handleEnableNewTrackAction,handleEndworkingHours,handleFullNameInput,handleEmailInput,handleWorkingOnWeekends,handleDaySelect,handleStartWorkingHours }
+    return { handleSignOut,handleRefreshandGet,handleSubmitData,state,handleSubOrUnsub,handleTimeSteps,handleEnableNewTrackAction,handleEndworkingHours,handleFullNameInput,handleEmailInput,handleWorkingOnWeekends,handleDaySelect,handleStartWorkingHours }
 
 }
 

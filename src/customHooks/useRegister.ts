@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { RegisterCompanyCountryAction, RegisterCompanyMobileAction, setCompanyDataAndGetCompanyId, setValueForEveryInputInPersonalDetails, setValueOfAuthentication } from './../Store/Register/action';
+import { RegisterCompanyCountryAction, RegisterCompanyMobileAction, setCompanyDataAndGetCompanyId, setValueForEveryInputInPersonalDetails, setValueOfAuthentication, setValueOfCompanyNameForEveryChangeInInput, setValueOfCompanySizeForEveryChangeInInput, setValueOfCountryForEveryChangeInInput, setValueOfEmailForEveryChangeInInput, setValueOfMobileForEveryChangeInInput, setValueOfPasswordForEveryChangeInInput, setValueOfUsernameForEveryChangeInInput } from './../Store/Register/action';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
@@ -31,17 +31,17 @@ const useRegister = (): RegisterRe => {
     const toast = useToast()
   
     let handleInput = ( e: string ): void => {
-      dispatch(ForRegisterSetEmail(e))
+      dispatch(setValueOfEmailForEveryChangeInInput(e))
       dispatch(queryCheckEmail(e))
     }
   
     let handleUsername = ( e: string ): void => {
-      dispatch(ForRegisterSetUsername(e))
+      dispatch(setValueOfUsernameForEveryChangeInInput(e))
       dispatch(queryCheckUsername(e))
     }
-  
+
     let handlePassword = ( e: string ): void => {
-      dispatch(RegisterSetPassword(e))
+      dispatch(setValueOfPasswordForEveryChangeInInput(e))
     }
   
     //next button
@@ -60,21 +60,21 @@ const useRegister = (): RegisterRe => {
     }
 
     let handleSize = ( e: string ): void => {
-      dispatch(JustChangeStatus(e))
+      dispatch(setValueOfCompanySizeForEveryChangeInInput(e))
     }
 
     let handleCompany = ( e: string, x: string ): void => {
       if(x==="companyName")
       {
-        dispatch(RegisterCompanyNameAction(e))
+        dispatch(setValueOfCompanyNameForEveryChangeInInput(e))
       }
       else if(x==="companyMobile")
       {
-        dispatch(RegisterCompanyMobileAction(e))
+        dispatch(setValueOfMobileForEveryChangeInInput(e))
       }
       else if(x==="companyCountry")
       {
-        dispatch(RegisterCompanyCountryAction(e))
+        dispatch(setValueOfCountryForEveryChangeInInput(e))
       }
       else
       {
@@ -120,6 +120,8 @@ const useRegister = (): RegisterRe => {
 
     useEffect(()=>{
       dispatch(setValueForEveryInputInPersonalDetails())
+        dispatch(queryCheckEmail(state.userObj.email))
+        dispatch(queryCheckUsername(state.userObj.username))
     },[])
 
 
