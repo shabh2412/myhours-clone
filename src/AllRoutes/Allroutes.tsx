@@ -88,95 +88,25 @@ const Allroutes = () => {
 						</>
 					}
 				/>
-				<Route path="dashboard" element={<Dashboard />}>
-					<Route
-						path="tasks"
-						element={
-							<PrivateRoute>
-								<Tasks />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="projects"
-						element={
-							<PrivateRoute>
-								<Projects />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="projects/new"
-						element={
-							<PrivateRoute>
-								<AddProject />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="projects/:_id"
-						element={
-							<PrivateRoute>
-								<ProjectPage />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="reports"
-						element={
-							<PrivateRoute>
-								<Reports />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="team-members"
-						element={
-							<PrivateRoute>
-								<TeamMembers />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="team-members/new"
-						element={
-							<PrivateRoute>
-								<TeamFormPage />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="clients"
-						element={
-							<PrivateRoute>
-								<Clients />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="clients/new"
-						element={
-							<PrivateRoute>
-								<AddClientForm />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="profile"
-						element={
-							<PrivateRoute>
-								<Profile />
-							</PrivateRoute>
-						}
-					/>
-				</Route>
 				<Route
-					path="/resetPassword"
+					path="dashboard"
 					element={
 						<PrivateRoute>
-							<ResetPassword />
+							<Dashboard />
 						</PrivateRoute>
-					}></Route>
+					}>
+					<Route path="tasks" element={<Tasks />} />
+					<Route path="projects" element={<Projects />} />
+					<Route path="projects/new" element={<AddProject />} />
+					<Route path="projects/:_id" element={<ProjectPage />} />
+					<Route path="reports" element={<Reports />} />
+					<Route path="team-members" element={<TeamMembers />} />
+					<Route path="team-members/new" element={<TeamFormPage />} />
+					<Route path="clients" element={<Clients />} />
+					<Route path="clients/new" element={<AddClientForm />} />
+					<Route path="profile" element={<Profile />} />
+				</Route>
+				<Route path="/resetPassword" element={<ResetPassword />}></Route>
 			</Routes>
 		</Box>
 	);
