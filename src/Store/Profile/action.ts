@@ -86,6 +86,26 @@ export const profileUpdatingData = ( obj : ProfileInit, secObj : gettedProfileDa
 
 } 
 
+export const profileSignOut = (): any => async( dispatch : Dispatch<ProfileDispatchHandler> ) : Promise<void> => {
+
+    try{
+        await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
+            username: "",
+            email: "",
+            password: "",
+            isAuthed: false,
+            country: "",
+            companyName: "",
+            companySize: "",
+            mobile: "",
+        })
+    }
+    catch(e){
+        console.log(e)
+    }
+
+} 
+
 
 export const ProfileSetUsernameAction = ( value : string ): ProfileSetUsername => {
 

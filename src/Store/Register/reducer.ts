@@ -2,7 +2,7 @@ import { RegisterDispatchHandler, User, REGISTER_INPUT_USERNAME, REGISTER_INPUT_
 import { loadDataLocalStorage, saveDataLocalStorage } from "../../Utils/localData"
 
 export interface UserCompany {
-    countryy : string,
+    country : string,
     companyName : string,
     companySize : string,
     mobile? : string 
@@ -43,7 +43,7 @@ const initialState: Init = {
     otpVerify : false,
     isEmailAvailable : false,
     userCompanyDetails : {
-        countryy : "",
+        country : "",
         companyName : "",
         companySize : "",
         mobile : ""
@@ -144,7 +144,7 @@ export const registerReducer = ( state = initialState, { type, payload } : Regis
                 ...state,
                 userCompanyDetails : {
                     ...state.userCompanyDetails,
-                    countryy : payload,
+                    country : payload,
                     
                 }
             }
@@ -167,7 +167,7 @@ export const registerReducer = ( state = initialState, { type, payload } : Regis
          case REGISTER_JUST_CHANGE_STATUS : {
 
             //Here is a glitch!!!!!!!!!!!!!!!! ---> If user unticks then also it will save the value
-
+       
              let filtered = state.UserCompanyArr.filter((el)=>{
                      return el.value===payload
                  })
