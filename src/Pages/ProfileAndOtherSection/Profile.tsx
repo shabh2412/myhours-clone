@@ -31,7 +31,7 @@ import useProfile from "../../customHooks/useProfile";
 
 function Profile() {
 
-  const { handleRefreshandGet,handleSubmitData,state,handleSubOrUnsub,handleTimeSteps,handleEnableNewTrackAction,handleEndworkingHours,handleFullNameInput,handleEmailInput,handleWorkingOnWeekends,handleDaySelect,handleStartWorkingHours } = useProfile()
+  const { handleSignOut,handleRefreshandGet,handleSubmitData,state,handleSubOrUnsub,handleTimeSteps,handleEnableNewTrackAction,handleEndworkingHours,handleFullNameInput,handleEmailInput,handleWorkingOnWeekends,handleDaySelect,handleStartWorkingHours } = useProfile()
 
   console.log(state.profileGettedsUserData)
 
@@ -225,6 +225,7 @@ function Profile() {
           backgroundColor={"white"}
           border={"1px solid #cc5252"}
           color={"#cc5252"}
+          onClick={()=>handleSignOut()}
         >
           Sign Out
         </Button>

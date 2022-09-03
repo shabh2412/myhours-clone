@@ -84,7 +84,7 @@ export const setCompanyDataAndGetCompanyId = ( obj : UserCompany  ): any => asyn
     try{
         
         let userComp = {
-            country : obj.countryy,
+            country : obj.country,
             companyName : obj.companyName,
             companySize : obj.companySize
           }
@@ -117,6 +117,13 @@ export const setValueForEveryInputInPersonalDetails = (): any => async( dispatch
 
         // console.log(data.data.isAuthed)
         dispatch(RegisterIsAuthenticatedAction(data.data.isAuthed))
+        dispatch(ForRegisterSetEmail(data.data.email))
+        dispatch(RegisterSetPassword(data.data.password))
+        dispatch(ForRegisterSetUsername(data.data.username))
+        dispatch(RegisterCompanyNameAction(data.data.companyName))
+        dispatch(RegisterCompanyCountryAction(data.data.country))
+        dispatch(JustChangeStatus(data.data.companySize))
+        dispatch(RegisterCompanyMobileAction(data.data.mobile))
 
     }
     catch(e){
@@ -134,7 +141,6 @@ export const setValueOfAuthentication = ( newStatus: boolean ): any => async( di
                 isAuthed : newStatus
         })
 
-        // console.log(data.data.isAuthed)
         dispatch(RegisterIsAuthenticatedAction(data.data.isAuthed))
 
     }
@@ -144,40 +150,125 @@ export const setValueOfAuthentication = ( newStatus: boolean ): any => async( di
 
 }
 
-// export const setValueOfEmailForEveryChangeInInput = ( e: string ): any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
+export const setValueOfUsernameForEveryChangeInInput = ( e: string ): any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
 
-//     try{
+    try{
 
-//         let data = await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
-//                 email : e
-//         })
+        let data = await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
+                username : e
+        })
 
-//         saveDataLocalStorage("emailKey", data.data.email)
-//         // dispatch(ForRegisterSetEmail(data.data.email))
+        dispatch(ForRegisterSetUsername(data.data.username))
 
-//     }
-//     catch(e){
-//         console.log(e)
-//     }
+    }
+    catch(e){
+        console.log(e)
+    }
 
-// }
+}
 
-// export const setValueOfPasswordForEveryChangeInInput = ( e: string ): any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
+export const setValueOfEmailForEveryChangeInInput = ( e: string ): any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
 
-//     try{
+    try{
 
-//         let data = await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
-//                 email : e
-//         })
+        let data = await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
+                email : e
+        })
 
-//         dispatch(RegisterSetPassword(data.data.password))
+        // saveDataLocalStorage("emailKey", data.data.email)
+        dispatch(ForRegisterSetEmail(data.data.email))
 
-//     }
-//     catch(e){
-//         console.log(e)
-//     }
+    }
+    catch(e){
+        console.log(e)
+    }
 
-// }
+}
+
+export const setValueOfCompanyNameForEveryChangeInInput = ( e: string ): any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
+
+    try{
+
+        let data = await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
+            companyName : e
+        })
+
+        dispatch(RegisterCompanyNameAction(data.data.companyName))
+
+    }
+    catch(e){
+        console.log(e)
+    }
+
+}
+
+export const setValueOfCountryForEveryChangeInInput = ( e: string ): any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
+
+    try{
+
+        let data = await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
+            country : e
+        })
+
+        dispatch(RegisterCompanyCountryAction(data.data.country))
+
+    }
+    catch(e){
+        console.log(e)
+    }
+
+}
+
+export const setValueOfCompanySizeForEveryChangeInInput = ( e: string ): any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
+
+    try{
+
+        let data = await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
+            companySize : e
+        })
+
+        dispatch(JustChangeStatus(data.data.companySize))
+
+    }
+    catch(e){
+        console.log(e)
+    }
+
+}
+
+export const setValueOfMobileForEveryChangeInInput = ( e: string ): any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
+
+    try{
+
+        let data = await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
+            mobile : e
+        })
+
+        dispatch(RegisterCompanyMobileAction(data.data.mobile))
+
+    }
+    catch(e){
+        console.log(e)
+    }
+
+}
+
+export const setValueOfPasswordForEveryChangeInInput = ( e: string ): any => async( dispatch : Dispatch<RegisterDispatchHandler> ) : Promise<void> => {
+
+    try{
+
+        let data = await axios.patch('https://my-first-masai-json-server.herokuapp.com/temporaryLogin', {
+                password : e
+        })
+
+        dispatch(RegisterSetPassword(data.data.password))
+
+    }
+    catch(e){
+        console.log(e)
+    }
+
+}
 
 
 // -------------------------------------       DO NOT CHANGE AND UNCOMMENT     ---------------------------------------

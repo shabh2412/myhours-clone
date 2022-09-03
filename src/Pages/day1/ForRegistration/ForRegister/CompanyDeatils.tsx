@@ -22,10 +22,10 @@ const CompanyDeatils = ( { handlePageChange,pageChange } : Props ) => {
 			<Heading fontSize={'26px'} marginTop='40px' marginBottom={'40px'} >Details about your company</Heading>
 		</Box>
           <FormLabel fontSize={'12px'} fontWeight='bold' >COMPANY NAME</FormLabel>
-          <Input onChange={(e)=>handleCompany(e.target.value,e.target.name)} name="companyName" marginBottom={'28px'} required type='text' />
+          <Input defaultValue={state.userCompanyDetails?.companyName} onChange={(e)=>handleCompany(e.target.value,e.target.name)} name="companyName" marginBottom={'28px'} required type='text' />
           <FormLabel fontSize={'12px'} fontWeight='bold' >COUNTRY</FormLabel>
 		  <FormHelperText color="gray" marginTop={'-5px'} marginBottom="10px" textAlign={'left'} fontSize="15px" >We will adapt your experience to the specifics of your region</FormHelperText>
-          <Select onChange={(e)=>handleCompany(e.target.value,e.target.name)} placeholder='Select' size='sm' defaultValue={'India'} name="companyCountry" marginBottom={'28px'} >
+          <Select onChange={(e)=>handleCompany(e.target.value,e.target.name)} placeholder={state.userCompanyDetails?.country} size='sm' defaultValue={state.userCompanyDetails?.country} name="companyCountry" marginBottom={'28px'} >
             {
                 state.countrySelect?.map((el,i)=>(
                   <option key={i} value={el.country} >{ el.country }</option>
@@ -42,11 +42,11 @@ const CompanyDeatils = ( { handlePageChange,pageChange } : Props ) => {
           }
         </Box>
           <FormLabel fontSize={'12px'} fontWeight='bold' >MOBILE NUMBER (OPTIONAL)</FormLabel>
-          <Input onChange={(e)=>handleCompany(e.target.value,e.target.name)} name="companyMobile" type={'text'}  />
+          <Input defaultValue={state.userCompanyDetails?.mobile} onChange={(e)=>handleCompany(e.target.value,e.target.name)} name="companyMobile" type={'text'}  />
 		  <Box px='2px' py='20px' >
 		  </Box >
           <Box display={'flex'} justifyContent='center' marginTop={'15px'} alignItems={'center'} >
-			<Button onClick={()=>handleAddCompanyData()} disabled={ !state.userCompanyDetails?.companyName || !state.userCompanyDetails?.companySize || !state.userCompanyDetails?.countryy } marginTop={'0px'} bgColor='#80b7d8' color={'white'} variant={'solid'} >
+			<Button onClick={()=>handleAddCompanyData()} disabled={ !state.userCompanyDetails?.companyName || !state.userCompanyDetails?.companySize || !state.userCompanyDetails?.country } marginTop={'0px'} bgColor='#80b7d8' color={'white'} variant={'solid'} >
         Create New Company</Button>
 		  </Box>
           <Box onClick={()=>{
