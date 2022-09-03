@@ -29,7 +29,7 @@ const PersonalDetails = ( { handlePageChange, pageChange } : Props ) => {
 		</Box>
           <FormLabel>Full Name</FormLabel>
 		  <FormHelperText color="gray" marginTop={'-5px'} marginBottom="10px" textAlign={'left'} fontSize="15px" >So we know what to call you in the app</FormHelperText>
-          <Input value={state.userObj.username} marginBottom={'5px'} onChange={(e)=>handleUsername(e.target.value)} required type='text' />
+          <Input defaultValue={state.userObj.username} marginBottom={'5px'} onChange={(e)=>handleUsername(e.target.value)} required type='text' />
           {
             state.userObj.username.length<=0 
             ?
@@ -43,7 +43,7 @@ const PersonalDetails = ( { handlePageChange, pageChange } : Props ) => {
           }
           <FormLabel>Email address</FormLabel>
 		  <FormHelperText color="gray" marginTop={'-5px'} marginBottom="10px" textAlign={'left'} fontSize="15px" >You will use this email to login</FormHelperText>
-          <Input value={state.userObj.email} marginBottom={state.isEmailAvailable ? "22px" : "5px" } onChange={(e)=>handleInput(e.target.value)} required type='email' />
+          <Input defaultValue={state.userObj.email} marginBottom={state.isEmailAvailable ? "22px" : "5px" } onChange={(e)=>handleInput(e.target.value)} required type='email' />
           {
             state.userObj.email.length<=0
             ?
@@ -56,7 +56,7 @@ const PersonalDetails = ( { handlePageChange, pageChange } : Props ) => {
             <FormHelperText marginTop={'0px'} marginBottom="20px" textAlign={'left'} color="red" fontSize="12px" ><i>Email already exists!</i></FormHelperText>
           }
           <FormLabel>Password</FormLabel>
-          <Input value={state.userObj.password} placeholder='Set Password' onChange={(e)=>handlePassword(e.target.value)} required type='password'  />
+          <Input defaultValue={state.userObj.password} placeholder='Set Password' onChange={(e)=>handlePassword(e.target.value)} required type='password'  />
 		  <Box px='2px' py='20px' >
 			<Text>By signing up you agree to the <NavLink color='blue.300' to="#" >Terms of Use</NavLink></Text>
 		  </Box >
