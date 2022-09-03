@@ -8,7 +8,7 @@ type Props = {};
 
 const LandingPageHero = (props: Props) => {
 	return (
-		<Stack textAlign="center" justifyContent="center" maxW="80%" mx="auto">
+		<Stack textAlign="center" justifyContent="center" maxW="80%" mx="auto" mt="40">
 			<Text
 				className={style.title}
 				maxW="container.lg"
