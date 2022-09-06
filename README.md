@@ -36,7 +36,7 @@
     - MongoDB
 
 ## Site Made by Us
-https://myhours-clone.vercel.app/
+[Click here to see the demo](https://my-hourss.netlify.app/)
 
 ## Copy this link to clone the Github Repository
 https://github.com/shabh2412/inconclusive-stop-6058
